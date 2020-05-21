@@ -30,7 +30,7 @@ function Styleguide() {
                 <h2>Buttons and Links</h2>
                 <button className="button-box-fill">box button</button>
                 <button className="button-pill-fill">pill button</button>
-                <Link to="#"><i class="fas fa-link"></i><span>in-text link</span></Link>
+                <Link to="#"><i class="fas fa-link"></i> <span>in-text link</span></Link>
             </section>
             <section>
                 <h2>Cards and Slots</h2>

@@ -13,7 +13,7 @@
 :root {
   /* color */
   --AppleRed100: #B42637;     /* Apple Red byjackli   - Brand identity color suitable for background, header text, and error messages */
-  --AppleRed065: #B52637A6;   /* Apple Red byjackli   - Suitable for in-text link decoration and inactive inpit fields */
+  --AppleRed065: #B5263780;   /* Apple Red byjackli   - Suitable for in-text link decoration and inactive inpit fields */
   
   --SkidBlack100: #171717;    /* Skid Black byjackli  - Suitable for any text and backgrounds. This is the default 'dark-mode' */
   --DarkBlack065: #000000A6;  /* Dark Black byjackli  - Suitable for overalys, tagged texts, drop shadows, help messages, and error messages */
@@ -38,6 +38,8 @@ html, body, #root, .App, .App>div {
   box-sizing: border-box;
   margin: 0;
   position: relative;
+  font-size: 18px;
+  color: var(--SkidBlack100);
 }
 
 .App {
@@ -100,9 +102,10 @@ h4 { font-size: 125%; }
 
 
 /* --- 03b Buttons and Links --- */
+/* Box Button */
 button, input[type="submit"] {
-  border: none;
-  padding: 10px 12px;
+  border: 2px solid var(--AppleRed100);
+  padding: 8px 10px;
   background-color: var(--AppleRed100);
 
   cursor: pointer;
@@ -110,10 +113,47 @@ button, input[type="submit"] {
   font-weight: 600;
   font-size: inherit;
   font-family: inherit;
+
+  transition: all .3s;
+}
+button:hover {
+  color: var(--AppleRed100);
+  background-color: var(--PaperWhite100);
+  transition: all .1s;
 }
 /* Pill Button */
 .button-pill-fill {
   border-radius: 99px;
+}
+/* In-Text Link */
+a:link, a:visited {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: all .3s;
+}
+a>span:hover {
+  color: var(--PaperWhite100);
+  transition: all .2s;
+}
+a:link>span::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: var(--AppleRed065);
+  
+  left: 0;
+  bottom: -1px;
+  height: .5em;
+  z-index: -1;
+  transition: all .3s;
+}
+a:link>span:hover::after {
+  height: 1.5em;
+  bottom: 0;
+  background-color: var(--AppleRed100);
+  transition: all .1s;
 }
 
 
@@ -130,7 +170,7 @@ button, input[type="submit"] {
 }
 
 
-/* --- 03d Cards --- */
+/* --- 03d Forms --- */
 
 
 
