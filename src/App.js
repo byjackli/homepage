@@ -1,12 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './styles/App.css';
+
 import Styleguide from './pages/Styleguide'
 
 function App() {
   return (
-    <div className="App">
-      <Styleguide />
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/styleguide" exact component={Styleguide} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

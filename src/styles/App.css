@@ -96,6 +96,28 @@ h4 { font-size: 125%; }
 
 
 /* ========= 03 COMPONENTS ========= */
+/* --- 03a Navigation --- */
+
+
+/* --- 03b Buttons and Links --- */
+button, input[type="submit"] {
+  border: none;
+  padding: 10px 12px;
+  background-color: var(--AppleRed100);
+
+  cursor: pointer;
+  color: var(--PaperWhite100);
+  font-weight: 600;
+  font-size: inherit;
+  font-family: inherit;
+}
+/* Pill Button */
+.button-pill-fill {
+  border-radius: 99px;
+}
+
+
+/* --- 03c Cards and Slots --- */
 /* Card */
 .card {
   background-color: var(--CleanWhite100);
@@ -108,9 +130,15 @@ h4 { font-size: 125%; }
 }
 
 
+/* --- 03d Cards --- */
+
+
 
 
 /* ========= 98 STYLEGUIDE ========= */
 main.styleguide section {
   margin: 50px;
+}
+main.styleguide section>* {
+  margin: 0 50px;
 }
