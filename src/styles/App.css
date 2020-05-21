@@ -38,7 +38,10 @@ html, body, #root, .App, .App>div {
   box-sizing: border-box;
   margin: 0;
   position: relative;
+
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  font-weight: 400;
   color: var(--SkidBlack100);
 }
 
@@ -58,10 +61,12 @@ main {
 }
 
 /* headings */
+h1, h2, h3, h4, h5, .slot-dd, .slot-header { font-weight: 600; }
 h1 { font-size: 300%; }
 h2 { font-size: 275%; }
 h3 { font-size: 200%; }
-h4 { font-size: 125%; }
+h4, .slot-dd { font-size: 125%; }
+h5 { font-size: 100%; }
 
 /* paragraph settings */
 .content {
@@ -126,18 +131,19 @@ button:hover {
   border-radius: 99px;
 }
 /* In-Text Link */
-a:link, a:visited {
+.intext:link, .intext:visited {
   text-decoration: none;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
   transition: all .3s;
+  z-index: 1;
 }
-a>span:hover {
+.intext>span:hover {
   color: var(--PaperWhite100);
   transition: all .2s;
 }
-a:link>span::after {
+.intext:link>span::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -149,7 +155,7 @@ a:link>span::after {
   z-index: -1;
   transition: all .3s;
 }
-a:link>span:hover::after {
+.intext:link>span:hover::after {
   height: 1.5em;
   bottom: 0;
   background-color: var(--AppleRed100);
@@ -160,13 +166,76 @@ a:link>span:hover::after {
 /* --- 03c Cards and Slots --- */
 /* Card */
 .card {
+  min-width: 540px;
+  height: fit-content;
   background-color: var(--CleanWhite100);
   padding: 30px;
   border-radius: 25px;
   box-shadow: 0px 2px 2px var(--DarkBlack025);
 }
 .card>div {
+  width: 100%;
+  height: 100%;
   padding-top: 25px;
+}
+.card-cap {
+  height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* Slot */
+.slot {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  padding-top: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+.slot:first-of-type { margin-top: 0px; }
+.slot:last-of-type { margin-bottom: 0px; }
+.slot-time {
+  min-width: 120px;
+  background-color: var(--AppleRed100);
+  padding: 15px;
+}
+.slot-time>* {
+  color: var(--PaperWhite100);
+}
+.slot h4 {
+  padding: 15px 35px;
+}
+.slot .hrzTL {
+  min-height: 25px; 
+  height: fit-content;
+  z-index: 1; 
+}
+.slot .hrzTL:first-of-type { margin-bottom: 20px;}
+.slot .slot-bg {
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* Tag */
+.tag {
+  padding: 5px 10px;
+  background-color: var(--DarkBlack065);
+  margin-right: 15px;
+  border-radius: 99px;
+
+  text-decoration: none;
+  color: var(--CleanWhite075);
+  transition: all .3s;
+}
+.tag:hover {
+  color: var(--PaperWhite100);
+  transition: all .1s;
+}
+.tag:last-of-type {
+  margin: 0;
 }
 
 
@@ -180,5 +249,8 @@ main.styleguide section {
   margin: 50px;
 }
 main.styleguide section>* {
-  margin: 0 50px;
+  margin: 50px;
+}
+main.styleguide section>h2 {
+  margin: 0;
 }
