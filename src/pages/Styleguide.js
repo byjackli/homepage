@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Minibar from '../components/Minibar';
 import Menubar from '../components/Menubar';
+import CompactNavbar from '../components/CompactNavbar';
+import CompactMenubar from '../components/CompactMenubar';
 import Searchbar from '../components/Searchbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
@@ -15,8 +16,9 @@ function Styleguide() {
             <section className="navigation">
                 <h2>Navigation</h2>
                 <Navbar />
-                <Minibar />
+                <CompactNavbar color="#B42637"/>
                 <Menubar />
+                <CompactMenubar />
                 <Searchbar />
                 <Footer />
             </section>

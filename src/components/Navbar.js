@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import Menubar from '../components/Menubar';
+// import Menubar from '../components/Menubar';
 import Searchbar from '../components/Searchbar';
 
 function Navbar() {
@@ -18,10 +18,10 @@ function Navbar() {
                 <Searchbar />
             </div>
             <div>
-                <NavLink to="/Resume">Resume</NavLink>
-                <NavLink to="/About">About</NavLink>
-                <NavLink to="/Projects">Projects</NavLink>
-                <NavLink to="/SignIn">Sign In</NavLink>
+                <NavLink to="/resume">Resume</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/projects">Projects</NavLink>
+                <NavLink to="/signIn">Sign In</NavLink>
                 <button className="button-pill-fill">Create Account</button>
             </div>
         </nav>

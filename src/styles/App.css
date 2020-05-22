@@ -138,11 +138,8 @@ button:hover {
   border-radius: 99px;
 }
 /* In-Text Link */
-.intext:link, .intext:visited {
+a:link, a:visited {
   text-decoration: none;
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
   transition: all .3s;
   z-index: 1;
 }
@@ -276,17 +273,19 @@ input:focus, input:hover {
 
 /* --- 03d Navigation --- */
 /* Homepage Navigation */
-nav, nav .left {
+nav, nav .left, .compact-navbar {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-nav {
+nav, .compact-navbar {
   width: 100%;
   height: 75px;
-  padding: 0 50px;
+  padding: 0 25px;
   background-color: var(--PaperWhite100);
   justify-content: space-between;
+
+  flex: auto;
 }
 nav a {
   margin: 0 25px;
@@ -294,26 +293,48 @@ nav a {
   color: var(--AppleRed100);
   font-weight: 600;
   text-decoration: none;
+  transition: all .3s;
 }
 nav a i.fa-bars { 
   color: var(--AppleRed100); 
   font-size: 200%;
 }
+nav .left { 
+  flex: inherit;
+  flex-grow: 1;
+}
 nav .left a:first-of-type {
-  padding: 0;
+  margin: 0;
 }
 nav .left a:last-of-type {
   margin: 0 50px 0 25px;
   font-size: 200%;
 }
+.active {
+  background-color: var(--AppleRed100);
+  color: var(--PaperWhite100);
+  transition: all .1s;
+}
+/* Compact Navigation */
+.compact-navbar {
+  height: fit-content;
+  padding: 2px 25px;
+}
+.compact-navbar a, .compact-navbar i {
+  font-size: 18px;
+  color: var(--PaperWhite100);
+}
+.compact-navbar .left a:last-of-type {
+  margin: 0 25px;
+}
 /* Search bar */
 input[type="text"].searchbar {
   font-weight: 600;
-  min-width: 75%;
+  width: 45%;
 }
 input[type="text"].searchbar:focus {
   font-weight: 600;
-  min-width: 95%;
+  min-width: 55%;
 }
 
 
@@ -322,6 +343,7 @@ input[type="text"].searchbar:focus {
 main.styleguide { background-color: #C4C4C4; }
 main.styleguide section { margin: 50px; }
 main.styleguide section>* { margin: 50px; }
-main.styleguide section>h2 { margin: 0; }
-main.styleguide nav { margin: 0; }
+main.styleguide section>h2,
+main.styleguide nav,
+main.styleguide .compact-navbar { margin: 50px 0; }
 .styleguide .cards-and-slots { width: 540px; }
