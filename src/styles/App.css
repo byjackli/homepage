@@ -39,10 +39,17 @@ html, body, #root, .App, .App>div {
   margin: 0;
   position: relative;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', 'Font Awesome 5 Free', sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: var(--SkidBlack100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 .App {
@@ -57,6 +64,8 @@ html, body, #root, .App, .App>div {
 }
 
 main {
+  width: 100%;
+  height: fit-content;
   margin: 50px;
 }
 
@@ -110,6 +119,7 @@ h5 { font-size: 100%; }
 /* Box Button */
 button, input[type="submit"] {
   border: 2px solid var(--AppleRed100);
+  outline: none;
   padding: 8px 10px;
   background-color: var(--AppleRed100);
 
@@ -240,7 +250,31 @@ button:hover {
 
 
 /* --- 03d Forms --- */
+input::placeholder {
+  color: var(--CleanWhite100);
+  transition: all .3s;
+}
+input[type='text'], input[type='email'], input[type='password'] {
+  min-width: 45%;
+  background-color: var(--AppleRed065);
+  padding: 15px;
+  border: none;
+  border-radius: 99px;
+  outline: none;
 
+  font-weight: 600;
+  color: var(--PaperWhite100);
+  transition: all .3s;
+}
+input:focus::placeholder, input:hover::placeholder {
+  color: var(--CleanWhite075);
+  transition: all .1s;
+}
+input:focus, input:hover {
+  background-color: var(--AppleRed100);
+  outline: none;
+  transition: all .1s;
+}
 
 
 
@@ -253,4 +287,7 @@ main.styleguide section>* {
 }
 main.styleguide section>h2 {
   margin: 0;
+}
+.styleguide .cards-and-slots {
+  width: 540px;
 }
