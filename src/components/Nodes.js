@@ -1,8 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Slot(props) {
 
+// Card element, use when neccessary
+export function Card(props) {
+    return (
+        <div className={props.class}>
+            <h3>{props.header}</h3>
+            <div>
+                {props.elements}
+            </div>
+        </div>
+    )
+}
+
+
+// Slot element, use when neccessary
+export function Slot(props) {
     function renderTags() {
         if (props.tags) {
             return (
@@ -49,5 +63,3 @@ function Slot(props) {
         </div>
     );
 }
-
-export default Slot;

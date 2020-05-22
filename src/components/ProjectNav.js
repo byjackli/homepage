@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function CompactNavbar(props) {
-
+// Compact Navigation Bar, use this navigation bar on all project-specific pages
+export function CompactNavbar(props) {
     return (
         <div className="compact-navbar" style={{background: `linear-gradient(0deg, #00000040, #00000040), ${props.color}`}}>
             <div className="left">
-                <Link to="#"><i class="fas fa-bars"></i></Link>
+                <Link to="#" aria-label="byjackli Menu"><i class="fas fa-bars"></i></Link>
                 <Link to="/projects">explore more byjackli</Link>
             </div>
             <div>
@@ -16,4 +16,7 @@ function CompactNavbar(props) {
     );
 }
 
-export default CompactNavbar;
+// Compact Menu Bar, use this menu bar on all project-specific pages
+export function CompactMenubar() {
+    return null;
+}

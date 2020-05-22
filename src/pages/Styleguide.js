@@ -1,13 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Menubar from '../components/Menubar';
-import CompactNavbar from '../components/CompactNavbar';
-import CompactMenubar from '../components/CompactMenubar';
-import Searchbar from '../components/Searchbar';
-import Footer from '../components/Footer';
-import Card from '../components/Card';
-import Slot from '../components/Slot';
+import { CompactNavbar, CompactMenubar } from '../components/ProjectNav';
+import { Navbar, Menubar, Footer } from '../components/Navigation';
+import { Searchbar } from '../components/Search';
+import { Card, Slot } from '../components/Nodes';
+import { BoxFill, PillFill, Intext } from '../components/Clicks';
+
 
 function Styleguide() {
     return (
@@ -51,9 +48,11 @@ function Styleguide() {
             </section>
             <section className="buttons-and-links">
                 <h2>Buttons and Links</h2>
-                <button className="button-box-fill">box button</button>
-                <button className="button-pill-fill">pill button</button>
-                <Link className="intext" to="#"><i className="fas fa-link"></i> <span>in-text link</span></Link>
+                <BoxFill label="box button" />
+                <PillFill label="pill button" />
+                <Intext href="/styleguide" label="in-text and internal" />
+                <Intext href="https://www.instagram.com/byjackli" label="external" />
+                <Intext href="https://www.instagram.com/byjackli" label="new tab" target="_blank" />
             </section>
             <section className="cards-and-slots">
                 <h2>Cards and Slots</h2>
