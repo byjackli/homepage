@@ -66,7 +66,7 @@ code {
 main {
   width: 100%;
   height: fit-content;
-  margin: 50px;
+  padding: 50px;
 }
 
 /* headings */
@@ -112,10 +112,7 @@ h5 { font-size: 100%; }
 
 
 /* ========= 03 COMPONENTS ========= */
-/* --- 03a Navigation --- */
-
-
-/* --- 03b Buttons and Links --- */
+/* --- 03a Buttons and Links --- */
 /* Box Button */
 button, input[type="submit"] {
   border: 2px solid var(--AppleRed100);
@@ -169,6 +166,34 @@ button:hover {
   height: 1.5em;
   bottom: 0;
   background-color: var(--AppleRed100);
+  transition: all .1s;
+}
+
+
+/* --- 03b Forms --- */
+input::placeholder {
+  color: var(--CleanWhite100);
+  transition: all .3s;
+}
+input[type='text'], input[type='email'], input[type='password'] {
+  min-width: 45%;
+  background-color: var(--AppleRed065);
+  padding: 15px 20px;
+  border: none;
+  border-radius: 99px;
+  outline: none;
+
+  font-weight: 400;
+  color: var(--PaperWhite100);
+  transition: all .3s;
+}
+input:focus::placeholder, input:hover::placeholder {
+  color: var(--CleanWhite075);
+  transition: all .1s;
+}
+input:focus, input:hover {
+  background-color: var(--AppleRed100);
+  outline: none;
   transition: all .1s;
 }
 
@@ -249,45 +274,54 @@ button:hover {
 }
 
 
-/* --- 03d Forms --- */
-input::placeholder {
-  color: var(--CleanWhite100);
-  transition: all .3s;
+/* --- 03d Navigation --- */
+/* Homepage Navigation */
+nav, nav .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-input[type='text'], input[type='email'], input[type='password'] {
-  min-width: 45%;
-  background-color: var(--AppleRed065);
-  padding: 15px;
-  border: none;
-  border-radius: 99px;
-  outline: none;
+nav {
+  width: 100%;
+  height: 75px;
+  padding: 0 50px;
+  background-color: var(--PaperWhite100);
+  justify-content: space-between;
+}
+nav a {
+  margin: 0 25px;
 
+  color: var(--AppleRed100);
   font-weight: 600;
-  color: var(--PaperWhite100);
-  transition: all .3s;
+  text-decoration: none;
 }
-input:focus::placeholder, input:hover::placeholder {
-  color: var(--CleanWhite075);
-  transition: all .1s;
+nav a i.fa-bars { 
+  color: var(--AppleRed100); 
+  font-size: 200%;
 }
-input:focus, input:hover {
-  background-color: var(--AppleRed100);
-  outline: none;
-  transition: all .1s;
+nav .left a:first-of-type {
+  padding: 0;
+}
+nav .left a:last-of-type {
+  margin: 0 50px 0 25px;
+  font-size: 200%;
+}
+/* Search bar */
+input[type="text"].searchbar {
+  font-weight: 600;
+  min-width: 75%;
+}
+input[type="text"].searchbar:focus {
+  font-weight: 600;
+  min-width: 95%;
 }
 
 
 
 /* ========= 98 STYLEGUIDE ========= */
-main.styleguide section {
-  margin: 50px;
-}
-main.styleguide section>* {
-  margin: 50px;
-}
-main.styleguide section>h2 {
-  margin: 0;
-}
-.styleguide .cards-and-slots {
-  width: 540px;
-}
+main.styleguide { background-color: #C4C4C4; }
+main.styleguide section { margin: 50px; }
+main.styleguide section>* { margin: 50px; }
+main.styleguide section>h2 { margin: 0; }
+main.styleguide nav { margin: 0; }
+.styleguide .cards-and-slots { width: 540px; }
