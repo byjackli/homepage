@@ -70,12 +70,14 @@ main {
 }
 
 /* headings */
-h1, h2, h3, h4, h5, .slot-dd, .slot-header { font-weight: 600; }
-h1 { font-size: 300%; }
-h2 { font-size: 275%; }
-h3 { font-size: 200%; }
-h4, .slot-dd { font-size: 125%; }
-h5 { font-size: 100%; }
+h1, h2, h3, h4, h5, 
+.style1, .style2, .style3, .style4, .style5, 
+.slot-header { font-weight: 600; }
+h1, .style1 { font-size: 300%; }
+h2, .style2 { font-size: 275%; }
+h3, .style3 { font-size: 200%; }
+h4, .style4 { font-size: 125%; }
+h5, .style5 { font-size: 100%; }
 
 /* paragraph settings */
 .content {
@@ -168,6 +170,7 @@ a:link, a:visited {
 
 
 /* --- 03b Forms --- */
+/* Input Fields */
 input::placeholder {
   color: var(--CleanWhite100);
   transition: all .3s;
@@ -192,6 +195,11 @@ input:focus, input:hover {
   background-color: var(--AppleRed100);
   outline: none;
   transition: all .1s;
+}
+/* Lists */
+ol {
+  list-style: none;
+  padding-left: 100px;
 }
 
 
@@ -296,8 +304,7 @@ nav a {
   transition: all .3s;
 }
 nav a i.fa-bars { 
-  color: var(--AppleRed100); 
-  font-size: 200%;
+  color: var(--AppleRed100);
 }
 nav .left { 
   flex: inherit;
@@ -308,7 +315,6 @@ nav .left a:first-of-type {
 }
 nav .left a:last-of-type {
   margin: 0 50px 0 25px;
-  font-size: 200%;
 }
 .active {
   background-color: var(--AppleRed100);
@@ -336,6 +342,18 @@ input[type="text"].searchbar:focus {
   font-weight: 600;
   min-width: 55%;
 }
+/* Footer */
+footer.hrzTL {
+  width: 100%;
+  height: fit-content;
+  background-color: var(--AppleRed100);
+  padding: 45px;
+  justify-content: space-between;
+}
+footer * {
+  color: var(--PaperWhite100);
+}
+footer p { padding-top: 15px; width: 250px;}
 
 
 
@@ -345,5 +363,6 @@ main.styleguide section { margin: 50px; }
 main.styleguide section>* { margin: 50px; }
 main.styleguide section>h2,
 main.styleguide nav,
-main.styleguide .compact-navbar { margin: 50px 0; }
+main.styleguide .compact-navbar,
+main.styleguide footer { margin: 50px 0; }
 .styleguide .cards-and-slots { width: 540px; }

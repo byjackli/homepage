@@ -13,8 +13,8 @@ function Navbar() {
     return (
         <nav>
             <div className="left">
-                <Link to="#"><i class="fas fa-bars"></i></Link>
-                <Link to="/">byjackli</Link>
+                <Link to="#"><i className="style3 fas fa-bars"></i></Link>
+                <Link className="style3" to="/">byjackli</Link>
                 <Searchbar />
             </div>
             <div>

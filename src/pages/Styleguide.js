@@ -16,11 +16,32 @@ function Styleguide() {
             <section className="navigation">
                 <h2>Navigation</h2>
                 <Navbar />
-                <CompactNavbar color="#B42637"/>
+                <CompactNavbar color="#B42637" />
                 <Menubar />
                 <CompactMenubar />
                 <Searchbar />
-                <Footer />
+                <Footer right={
+                    <div className="hrzTL">
+                        <ol>
+                            <li className="style5">Contact</li>
+                            <li> 347 476 - 4944 </li>
+                            <li> jackli@buffalo.edu </li>
+                            <li> email@byjackli.com </li>
+                        </ol>
+                        <ol>
+                            <li className="style5">Proudly built with</li>
+                            <li> Javascript </li>
+                            <li> Nodejs </li>
+                            <li> Reactjs </li>
+                            <li> Visual Studios Code </li>
+                            <li> Firebase </li>
+                        </ol>
+                        <ol>
+                            <li className="style5">Other projects</li>
+                            <li></li>
+                        </ol>
+                    </div>
+                } />
             </section>
             <section className="typography">
                 <h2>Typography</h2>

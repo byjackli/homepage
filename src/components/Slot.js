@@ -39,8 +39,8 @@ function Slot(props) {
         <div className="slot">
             <div className="hrzTL">
                 <div className="slot-time">
-                    <p className="slot-mm">{props.month}</p>
-                    <p className="slot-dd">{props.date}</p>
+                    <p>{props.month}</p>
+                    <p className="style4">{props.date}</p>
                 </div>
                 <h4>{props.header}</h4>
             </div>
