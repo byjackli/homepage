@@ -227,6 +227,7 @@ input:focus, input:hover {
 /* Lists */
 ol {
   list-style: none;
+  padding: none;
 }
 
 
@@ -251,7 +252,8 @@ ol {
   overflow-x: hidden;
 }
 /* Slot */
-.slot {
+.slot { margin: 15px 0; }
+.slot>div {
   width: 100%;
   height: fit-content;
   padding: 20px;
@@ -374,6 +376,24 @@ input[type='search']:focus {
   font-weight: 600;
   min-width: 55%;
 }
+/* Suggest box*/
+.suggestBox {
+  width: 100%;
+  max-height: 500px;
+  background-color: var(--AppleRed100);
+}
+.suggestBox ol { padding-left: 0; }
+.suggestBox ol div {
+  width: 100%;
+  border: none;
+  padding: 12px 38px;
+  font-weight: 400;
+}
+.suggestBox ol div:hover {
+  border: none;
+  background-color: var(--DarkBlack025);
+  color: var(--PaperWhite100);
+}
 /* Menu bar */
 .menubar {
   width: 300px;
@@ -421,4 +441,5 @@ main.styleguide .compact-navbar,
 main.styleguide .menubar,
 main.styleguide footer { margin: 50px 0 !important; }
 main.styleguide div.menubar { height: 800px !important; }
+main.styleguide .suggestBox { width: 400px !important; }
 .styleguide .cards-and-slots { width: 540px !important; }

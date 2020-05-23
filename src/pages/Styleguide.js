@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, CompactNavbar, Menubar, Footer } from '../components/Navigation';
-import { Searchbar } from '../components/Search';
+import { Searchbar, Suggestbox } from '../components/Search';
 import { Card, Slot } from '../components/Nodes';
 import { BoxFill, PillFill, Intext } from '../components/Clicks';
 
@@ -43,6 +43,7 @@ function Styleguide() {
                     }
                 />
                 <Searchbar />
+                <Suggestbox />
                 <Footer right={
                     <div className="hrzTL">
                         <ol>
@@ -90,12 +91,12 @@ function Styleguide() {
                     </div>} />
                 <Card className="card" header="Card with Slots" elements={
                     <div className="card-cap">
-                        <Slot month="September" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
-                        <Slot month="May" date="4" header="no background image" />
-                        <Slot month="July" date="11" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
+                        <Slot href="#" month="September" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
+                        <Slot href="#" month="May" date="4" header="no background image" />
+                        <Slot href="#" month="July" date="11" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
                     </div>} />
-                <Slot month="September" date="22" header="no background image" />
-                <Slot month="May" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
+                <Slot href="#" month="September" date="22" header="no background image" />
+                <Slot href="#" month="May" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
             </section>
         </main>
     )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 // Card element, use when neccessary
-export function Card({header, elements, ...rest}) {
+export function Card({ header, elements, ...rest }) {
     return (
         <div {...rest}>
             <h3>{header}</h3>
@@ -50,16 +50,18 @@ export function Slot(props) {
     }
 
     return (
-        <div className="slot">
-            <div className="hrzTL">
-                <div className="slot-time">
-                    <p>{props.month}</p>
-                    <p className="style4">{props.date}</p>
+        <a href={props.href} className="slot">
+            <div>
+                <div className="hrzTL">
+                    <div className="slot-time">
+                        <p>{props.month}</p>
+                        <p className="style4">{props.date}</p>
+                    </div>
+                    <h4>{props.header}</h4>
                 </div>
-                <h4>{props.header}</h4>
+                {renderTags()}
+                {renderBG()}
             </div>
-            {renderTags()}
-            {renderBG()}
-        </div>
+        </a>
     );
 }
