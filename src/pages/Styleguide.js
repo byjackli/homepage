@@ -1,6 +1,5 @@
 import React from 'react';
-import { CompactNavbar, CompactMenubar } from '../components/ProjectNav';
-import { Navbar, Menubar, Footer } from '../components/Navigation';
+import { Navbar, CompactNavbar, Menubar, Footer } from '../components/Navigation';
 import { Searchbar } from '../components/Search';
 import { Card, Slot } from '../components/Nodes';
 import { BoxFill, PillFill, Intext } from '../components/Clicks';
@@ -14,8 +13,35 @@ function Styleguide() {
                 <h2>Navigation</h2>
                 <Navbar />
                 <CompactNavbar color="#B42637" />
-                <Menubar />
-                <CompactMenubar />
+                <Menubar
+                    height={75}
+                    categories={
+                        <div className="categories">
+                            <p>Good Morning Tony Stark!</p>
+                            <ol>
+                                <li>Jack</li>
+                                <li><BoxFill href="#" label="Resume" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="About" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Contact" type="nofill" className="type4" /></li>
+                            </ol>
+                            <ol>
+                                <li>Projects</li>
+                                <li><BoxFill href="#" label="See All" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Travel" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Photos" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Focus" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Lyrics" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Playlist" type="nofill" className="type4" /></li>
+                            </ol>
+                            <ol>
+                                <li>Account</li>
+                                <li><BoxFill href="#" label="Profile" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Language" type="nofill" className="type4" /></li>
+                                <li><BoxFill href="#" label="Country" type="nofill" className="type4" /></li>
+                            </ol>
+                        </div>
+                    }
+                />
                 <Searchbar />
                 <Footer right={
                     <div className="hrzTL">
@@ -48,19 +74,21 @@ function Styleguide() {
             </section>
             <section className="buttons-and-links">
                 <h2>Buttons and Links</h2>
-                <BoxFill label="box button" />
-                <PillFill label="pill button" />
+                <BoxFill href="/styleguide" label="box fill" type="fill" />
+                <BoxFill href="/styleguide" label="box nofill" type="nofill" />
+                <PillFill href="/styleguide" label="pill fill" type="fill" />
+                <PillFill href="/styleguide" label="pill nofill" type="nofill" />
                 <Intext href="/styleguide" label="in-text and internal" />
                 <Intext href="https://www.instagram.com/byjackli" label="external" />
                 <Intext href="https://www.instagram.com/byjackli" label="new tab" target="_blank" />
             </section>
             <section className="cards-and-slots">
                 <h2>Cards and Slots</h2>
-                <Card class="card" header="Card with Text" elements={
+                <Card className="card" header="Card with Text" elements={
                     <div>
                         <p>temporary text</p>
                     </div>} />
-                <Card class="card" header="Card with Slots" elements={
+                <Card className="card" header="Card with Slots" elements={
                     <div className="card-cap">
                         <Slot month="September" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
                         <Slot month="May" date="4" header="no background image" />

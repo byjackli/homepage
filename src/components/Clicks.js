@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 
 // Button -- Box Styled, Colored
-export function BoxFill(props) {
-    return <a className="button-box-fill" href={props.href} >{props.label}</a>;
+export function BoxFill({ label, type, ...rest }) {
+    return <a className="button-root" {...rest}><div className={`button-box-${type}`}>{label}</div></a>;
 }
 
 
 // Button -- Pill Styled, Colored
-export function PillFill(props) {
-    return <a className="button-pill-fill" href={props.href}>{props.label}</a>;
+export function PillFill({ label, type, ...rest }) {
+    return <a className="button-root" {...rest}><div className={`button-pill-${type}`}>{label}</div></a>;
 }
 
 
@@ -27,7 +27,7 @@ export function Intext(props) {
     return (
         <a className="intext" href={props.href} target={props.target}>
             {props.label}
-            <i class="sup fas fa-external-link-square-alt"></i>
+            <i className="sup fas fa-external-link-square-alt"></i>
         </a>
     );
 }

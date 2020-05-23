@@ -65,8 +65,11 @@ code {
 
 main {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   padding: 50px;
+  
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* headings */
@@ -121,10 +124,13 @@ h5, .style5 { font-size: 100%; }
 
 /* ========= 03 COMPONENTS ========= */
 /* --- 03a Buttons and Links --- */
+.button-root { display: inline-block; }
 /* Box Button */
-.button-box-fill, .button-pill-fill, input[type="submit"] {
+.button-box-fill, .button-pill-fill, 
+.button-box-nofill, .button-pill-nofill,
+input[type="submit"] {
+  width: fit-content;
   border: 2px solid var(--AppleRed100);
-  outline: none;
   padding: 8px 10px;
   background-color: var(--AppleRed100);
 
@@ -136,7 +142,11 @@ h5, .style5 { font-size: 100%; }
 
   transition: all .3s;
 }
-.button-box-fill:hover, .button-pill-fill:hover {
+.button-box-fill:hover, .button-pill-fill:hover, 
+.button-box-fill:focus, .button-pill-fill:focus,
+.button-box-nofill:hover, .button-pill-nofill:hover, 
+.button-box-nofill:focus, .button-pill-nofill:focus  {
+  outline: none;
   color: var(--AppleRed100);
   background-color: var(--PaperWhite100);
   transition: all .1s;
@@ -145,13 +155,25 @@ h5, .style5 { font-size: 100%; }
 .button-pill-fill {
   border-radius: 99px;
 }
+/* Box and Pill Buttons - nofill variant */
+.button-box-nofill, .button-pill-nofill {
+  background-color: var(--PaperWhite100);
+  border-color: var(--PaperWhite100);
+  color: var(--AppleRed100);
+}
+.button-box-nofill:hover, .button-pill-nofill:hover, 
+.button-box-nofill:focus, .button-pill-nofill:focus {
+  background-color: var(--AppleRed100);
+  color: var(--PaperWhite100);
+}
 /* In-Text Link */
 a:link, a:visited {
   text-decoration: none;
   transition: all .3s;
   z-index: 1;
 }
-.intext:hover, .intext:hover * {
+.intext:hover, .intext:hover *, .intext:focus, .intext:focus * {
+  outline: none;
   color: var(--PaperWhite100);
   transition: all .2s;
 }
@@ -167,7 +189,7 @@ a:link, a:visited {
   z-index: -1;
   transition: all .3s;
 }
-.intext:link:hover::after {
+.intext:link:hover::after, .intext:link:focus::after {
   height: 1.5em;
   bottom: 0;
   background-color: var(--AppleRed100);
@@ -205,7 +227,6 @@ input:focus, input:hover {
 /* Lists */
 ol {
   list-style: none;
-  padding-left: 100px;
 }
 
 
@@ -301,7 +322,13 @@ nav, .compact-navbar {
 
   flex: auto;
 }
-nav a, nav a * {
+nav div { 
+  height: 100%; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav a {
   margin: 0 25px;
 
   color: var(--AppleRed100);
@@ -309,11 +336,13 @@ nav a, nav a * {
   text-decoration: none;
   transition: all .3s;
 }
+.navlink { height: 100%; }
+nav a * { color: var(--AppleRed100); }
 nav .left { 
   flex: inherit;
   flex-grow: 1;
 }
-nav .left a:first-of-type {
+nav .left a:first-of-type, nav a:last-of-type {
   margin: 0;
 }
 nav .left a:last-of-type {
@@ -345,6 +374,27 @@ input[type='search']:focus {
   font-weight: 600;
   min-width: 55%;
 }
+/* Menu bar */
+.menubar {
+  width: 300px;
+  background-color: var(--PaperWhite100);
+  justify-content: space-between;
+}
+.menubar * { width: 100%; }
+.menubar .button-box-fill { width: 100%; }
+.menubar .top { height: calc(100% - 84px); }
+.menubar .categories { 
+  height: 100%;
+  overflow-y: scroll; 
+}
+.menubar p {
+  width: 250px;
+  padding: 40px;
+  font-size: 125%;
+}
+.menubar ol { padding-bottom: 30px; }
+.menubar ol * { color: var(--SkidBlack100); }
+.menubar ol li:first-of-type { color: var(--DarkBlack065); }
 /* Footer */
 footer.hrzTL {
   width: 100%;
@@ -357,15 +407,18 @@ footer * {
   color: var(--PaperWhite100);
 }
 footer p { padding-top: 15px; width: 250px;}
+footer ol { padding-left: 100px; }
 
 
 
 /* ========= 98 STYLEGUIDE ========= */
-main.styleguide { background-color: #C4C4C4; }
-main.styleguide section { margin: 50px; }
-main.styleguide section>* { margin: 50px; }
+main.styleguide { background-color: #C4C4C4 !important; }
+main.styleguide section { margin: 50px !important; }
+main.styleguide section>* { margin: 50px !important; }
 main.styleguide section>h2,
 main.styleguide nav,
 main.styleguide .compact-navbar,
-main.styleguide footer { margin: 50px 0; }
-.styleguide .cards-and-slots { width: 540px; }
+main.styleguide .menubar,
+main.styleguide footer { margin: 50px 0 !important; }
+main.styleguide div.menubar { height: 800px !important; }
+.styleguide .cards-and-slots { width: 540px !important; }

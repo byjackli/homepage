@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 // Card element, use when neccessary
-export function Card(props) {
+export function Card({header, elements, ...rest}) {
     return (
-        <div className={props.class}>
-            <h3>{props.header}</h3>
+        <div {...rest}>
+            <h3>{header}</h3>
             <div>
-                {props.elements}
+                {elements}
             </div>
         </div>
     )

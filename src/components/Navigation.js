@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Searchbar } from './Search';
-import { PillFill } from './Clicks';
+import { BoxFill, PillFill } from './Clicks';
 
 
 // Navigation bar, use this on hompage
@@ -18,20 +18,49 @@ export function Navbar() {
                 <Searchbar />
             </div>
             <div>
-                <NavLink to="/resume">Resume</NavLink>
-                <NavLink to="/about">About</NavLink>
-                <NavLink to="/projects">Projects</NavLink>
-                <NavLink to="/signIn">Sign In</NavLink>
-                <PillFill label="Create Account" action="window.location.href=`https://www.instagram.com/byjackli`"/>
+                <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
+                <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
+                <NavLink className="navlink" to="/projects"><div className="button-box-nofill">Projects</div></NavLink>
+                <NavLink className="navlink" to="/signIn"><div className="button-box-nofill">Sign In</div></NavLink>
+                <PillFill label="Create Account" href="https://www.instagram.com/byjackli" type="fill" />
             </div>
         </nav>
     );
 }
 
 
+// Compact Navigation Bar, use this navigation bar on all project-specific pages
+export function CompactNavbar(props) {
+    return (
+        <div className="compact-navbar" style={{ background: `linear-gradient(0deg, #00000040, #00000040), ${props.color}` }}>
+            <div className="left">
+                <Link to="#" aria-label="byjackli Menu"><i className="fas fa-bars"></i></Link>
+                <Link to="/projects">explore more byjackli</Link>
+            </div>
+            <div>
+                <Link to={`/project/${props.uri}`}>click to learn more about this project</Link>
+            </div>
+        </div>
+    );
+}
+
+
 // Menu Bar, use this on homepage
-export function Menubar() {
-    return null;
+export function Menubar(props) {
+    function doNothing() {
+        console.log("great");
+    }
+    return (
+        <div className="menubar vrtTL" style={{ height: `calc(100% - ${props.height}px)` }}>
+            <div className="top">
+                <BoxFill href="#" label="close menu" type="fill" onClick={doNothing.bind()} />
+                {props.categories}
+            </div>
+            <div className="bottom">
+                <BoxFill href="#" label="sign out" type="fill" />
+            </div>
+        </div>
+    );
 }
 
 
