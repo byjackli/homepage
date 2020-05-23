@@ -20,9 +20,9 @@ export function Slot(props) {
     function renderTags() {
         if (props.tags) {
             return (
-                <div className="hrzTL">
+                <div className="hrzTL tagList">
                     {props.tags.map(tag => (
-                        <Link className="tag" to={`/${tag}`}>#{tag}</Link>
+                        <Link className="tag" key={tag} to={`/${tag}`}>#{tag}</Link>
                     ))}
                 </div>
             )
@@ -50,18 +50,17 @@ export function Slot(props) {
     }
 
     return (
-        <a href={props.href} className="slot">
-            <div>
-                <div className="hrzTL">
-                    <div className="slot-time">
-                        <p>{props.month}</p>
-                        <p className="style4">{props.date}</p>
-                    </div>
-                    <h4>{props.header}</h4>
+        <div className="slot">
+            <a href={props.href} >{props.href}</a>
+            <div className="hrzTL">
+                <div className="slot-time">
+                    <p>{props.month}</p>
+                    <p className="style4">{props.date}</p>
                 </div>
-                {renderTags()}
-                {renderBG()}
+                <h4>{props.header}</h4>
             </div>
-        </a>
+            {renderTags()}
+            {renderBG()}
+        </div>
     );
 }

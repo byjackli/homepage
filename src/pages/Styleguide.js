@@ -11,7 +11,7 @@ function Styleguide() {
             <h1>Styleguide</h1>
             <section className="navigation">
                 <h2>Navigation</h2>
-                <Navbar />
+                <Navbar message={<p><span className="style5">Test:</span> This is a test message!</p>} />
                 <CompactNavbar color="#B42637" />
                 <Menubar
                     height={75}
@@ -69,9 +69,73 @@ function Styleguide() {
             </section>
             <section className="typography">
                 <h2>Typography</h2>
+                <div>
+                    <h1>h1 and style1</h1>
+                    <p>family:Roboto, size:325%, weight:600</p>
+                </div>
+                <div>
+                    <h2>h2 and style2</h2>
+                    <p>family:Roboto, size:275%, weight:600</p>
+                </div>
+                <div>
+                    <h3>h3 and style3</h3>
+                    <p>family:Roboto, size:200%, weight:600</p>
+                </div>
+                <div>
+                    <h4>h4 and style4</h4>
+                    <p>family:Roboto, size:125%, weight:600</p>
+                </div>
+                <div>
+                    <h5>h5 and style5</h5>
+                    <p>family:Roboto, size:100%, weight:600</p>
+                </div>
+                <div>
+                    <p>default text</p>
+                    <p>family:Roboto, size:18px, weight:400</p>
+                </div>
             </section>
             <section>
                 <h2>Color Palette</h2>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--BrandL)" }}></div>
+                    <p>Apple Red byjackli, var(--BrandL)</p>
+                    <p>Brand identity color suitable for background, header text, and error messages.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--BrandS)" }}></div>
+                    <p>Apple Red byjackli, var(--BrandS)</p>
+                    <p>Suitable for in-text link decoration and inactive inpit fields.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--DarkL)" }}></div>
+                    <p>Skid Black byjackli, var(--DarkL)</p>
+                    <p>Suitable for any text and backgrounds. This is the default 'dark-mode'.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--DarkM)" }}></div>
+                    <p>Dark Black byjackli, var(--DarkM)</p>
+                    <p>Suitable for overalys, tagged texts, drop shadows, help messages, and error messages.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--DarkS)" }}></div>
+                    <p>Dark Black byjackli, var(--DarkS)</p>
+                    <p>Suitable for card and block drop shadows.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--LightL)" }}></div>
+                    <p>Paper White byjackli, var(--LightL)</p>
+                    <p>Suitable for any text and backgrounds. This is the default 'light-mode' color.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--LightM)" }}></div>
+                    <p>Clean White byjackli, var(--LightM)</p>
+                    <p>Suitable for card and block backgrounds.</p>
+                </div>
+                <div>
+                    <div className="colorbox" style={{ backgroundColor: "var(--LightS)" }}></div>
+                    <p>Clean White byjackli, var(--LightS)</p>
+                    <p>Suitable for overlays.</p>
+                </div>
             </section>
             <section className="buttons-and-links">
                 <h2>Buttons and Links</h2>

@@ -5,24 +5,29 @@ import { BoxFill, PillFill } from './Clicks';
 
 
 // Navigation bar, use this on hompage
-export function Navbar() {
+export function Navbar(props) {
     // function toggleMenu() {
     //     return <Menubar />;
     // }
 
     return (
         <nav>
-            <div className="left">
-                <Link to="#" aria-label="Menu"><i className="style3 fas fa-bars"></i></Link>
-                <Link className="style3" to="/">byjackli</Link>
-                <Searchbar />
+            <div className="top">
+                <div className="left">
+                    <Link to="#" aria-label="Menu"><i className="style3 fas fa-bars"></i></Link>
+                    <Link className="style3" to="/">byjackli</Link>
+                    <Searchbar />
+                </div>
+                <div>
+                    <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
+                    <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
+                    <NavLink className="navlink" to="/projects"><div className="button-box-nofill">Projects</div></NavLink>
+                    <NavLink className="navlink" to="/signIn"><div className="button-box-nofill">Sign In</div></NavLink>
+                    <PillFill label="Create Account" href="https://www.instagram.com/byjackli" type="fill" />
+                </div>
             </div>
-            <div>
-                <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
-                <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
-                <NavLink className="navlink" to="/projects"><div className="button-box-nofill">Projects</div></NavLink>
-                <NavLink className="navlink" to="/signIn"><div className="button-box-nofill">Sign In</div></NavLink>
-                <PillFill label="Create Account" href="https://www.instagram.com/byjackli" type="fill" />
+            <div className="bottom">
+                {props.message}
             </div>
         </nav>
     );
