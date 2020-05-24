@@ -1,6 +1,8 @@
 /* ========= TABLE OF CONTENTS ========= 
     01. VARIABLES
     02. GENERAL
+    03. COMPONENTS
+    04. RESUME
     98. STYLEGUIDE
     99. TOP LEVEL
 
@@ -22,6 +24,9 @@
   --LightL: #F2F2F2;   /* Paper White byjackli - Suitable for any text and backgrounds. This is the default 'light-mode' color. */
   --LightM: #FFFFFF;   /* Clean White byjackli - Suitable for card and block backgrounds. */
   --LightS: #FFFFFFBF; /* Clean White byjackli - Suitable for overlays */
+
+  /* height */
+  --navheight: 107px;
 }
 
 
@@ -52,24 +57,12 @@ code {
     monospace;
 }
 
-.App {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-}
-
-.App>div {
-  display: flex;
-  flex-direction: column;
-}
-
 main {
   width: 100%;
-  height: 100%;
-  padding: 50px;
-  
-  overflow-y: scroll;
-  overflow-x: hidden;
+  min-height: 100%;
+  height: fit-content;
+  padding: 50px 75px;
+  padding-top: calc(50px + var(--navheight));
 }
 
 /* headings */
@@ -94,15 +87,14 @@ h5, .style5 { font-size: 100%; }
   white-space: pre-line;
 }
 
-.vrtTL, .hrzTL {
+.vrtTL, .hrzTL, .hrzBT {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.hrzTL {
-  flex-direction: row;
-}
+.hrzTL, .hrzBT { flex-direction: row; }
+.hrzBT { justify-content: space-between; }
 
 /* scrollbar */
 *::-webkit-scrollbar {
@@ -179,6 +171,7 @@ a:link, a:visited {
   color: var(--LightL);
   transition: all .2s;
 }
+.intext .fas { width: fit-content; }
 .intext:link::after {
   content: "";
   position: absolute;
@@ -199,7 +192,17 @@ a:link, a:visited {
 }
 
 
-/* --- 03b Forms --- */
+/* --- 03b Icons --- */
+.card li>.fas, .card li>.fab { 
+  width: 25px; 
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* --- 03c Forms --- */
 /* Input Fields */
 input::placeholder {
   color: var(--LightM);
@@ -229,14 +232,14 @@ input:focus, input:hover {
 /* Lists */
 ol {
   list-style: none;
-  padding: none;
+  padding: 0;
 }
 
 
-/* --- 03c Cards and Slots --- */
+/* --- 03d Cards and Slots --- */
 /* Card */
 .card {
-  min-width: 540px;
+  width: 100%;
   height: fit-content;
   background-color: var(--LightM);
   padding: 30px;
@@ -248,22 +251,14 @@ ol {
   height: 100%;
   padding-top: 25px;
 }
+.card ol { padding-right: 50px; }
+.card ol:last-of-type { padding-right: 0; }
 .card-cap {
-  height: 250px;
+  height: 500px;
+  margin-top: 25px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-/* .scrollGradient, main {
-  background: 
-    linear-gradient(#c4c4c4 0%, rgba(255, 255, 255, 0)),
-    linear-gradient(#f0f0f000, #c4c4c4 70%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, var(--DarkL), #00000000),
-    radial-gradient(farthest-side at 50% 100%, var(--DarkL), #00000000) 0 100%;
-  background-color: #c4c4c4;
-  background-repeat: no-repeat;
-  background-attachment: local, local, scroll, scroll;
-  background-size: 100% 10%, 100% 10%, 100% 10%, 100% 10%;
-} */
 /* Slot */
 .slot {
   width: 100%;
@@ -339,6 +334,7 @@ nav, nav .left, .compact-navbar, nav div {
   display: flex;
   flex-direction: row;
   align-items: center;
+  z-index: 99;
 }
 nav>div, .compact-navbar {
   width: 100%;
@@ -347,15 +343,18 @@ nav>div, .compact-navbar {
 }
 nav { 
   flex-direction: column; 
+  width: 100%;
   height: fit-content;
   background-color: var(--LightL);
   box-shadow: 0px -5px 20px var(--DarkM);
+  position: fixed;
 }
 nav .top { 
   height: 75px;
   justify-content: space-between; 
 }
 nav .bottom {
+  min-height: 32px;
   height: fit-content;
   background-color: var(--BrandL);
   justify-content: center;
@@ -390,6 +389,7 @@ nav .left a:last-of-type {
   height: fit-content;
   padding: 2px 25px;
   justify-content: space-between;
+  position: fixed;
 }
 .compact-navbar a, .compact-navbar i {
   font-size: 18px;
@@ -436,8 +436,9 @@ input[type='search']:focus {
 .menubar .top { height: calc(100% - 84px); }
 .menubar .categories { 
   height: 100%;
-  overflow-y: scroll; 
+  overflow-y: hidden;
 }
+.menubar .categories:hover { overflow-y: scroll; }
 .menubar p {
   width: 250px;
   padding: 40px;
@@ -462,6 +463,16 @@ footer ol { padding-left: 100px; }
 
 
 
+/* ========= 04 RESUME ========= */
+main.resume>div {
+  padding-bottom: 3%;
+}
+main.resume .card {
+  width: 32%;
+}
+
+
+
 /* ========= 98 STYLEGUIDE ========= */
 main.styleguide { background-color: #C4C4C4 !important; }
 main.styleguide section { margin: 50px !important; }
@@ -470,10 +481,11 @@ main.styleguide section>h2:first-of-type,
 main.styleguide nav,
 main.styleguide .compact-navbar,
 main.styleguide .menubar,
-main.styleguide footer { margin: 50px 0 !important; }
+main.styleguide footer { margin: 50px 0 !important; position: relative !important; z-index: 50;}
 main.styleguide div.menubar { height: 800px !important; }
 main.styleguide .suggestBox { width: 400px !important; }
 .styleguide .cards-and-slots { width: 540px !important; }
+main.styleguide .card { min-width: 540px !important; }
 main.styleguide .colorbox { 
   width: 100px;
   height: 100px;
