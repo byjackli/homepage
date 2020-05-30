@@ -15,18 +15,19 @@ export function PillFill({ label, type, ...rest }) {
 
 
 // Link -- In-Text, Highlighted
-export function Intext(props) {
-    if (props.href.startsWith("/") || props.href.startsWith(".")) {
+export function Intext({href, label, ...rest}) {
+    if (!href) { return null; }
+    if (href.startsWith("/") || href.startsWith(".") || href.startsWith("#")) {
         return (
-            <Link className="intext" to={props.href} target={props.target}>
-                {props.label}
+            <Link className="intext" to={href} {...rest}>
+                {label}
             </Link>
         );
     }
 
     return (
-        <a className="intext" href={props.href} target={props.target}>
-            {props.label}
+        <a className="intext" href={href} {...rest}>
+            {label}
             <i className="sup fas fa-external-link-square-alt"></i>
         </a>
     );

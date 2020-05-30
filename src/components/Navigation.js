@@ -77,7 +77,9 @@ export function Footer(props) {
                 <Link className="style3" to="/">byjackli</Link>
                 <p>if you can't make sacrifices, then you need a new goal</p>
             </div>
-            {props.right}
+            <div className="hrzTL">
+                {props.right}
+            </div>
         </footer>
     );
 }
