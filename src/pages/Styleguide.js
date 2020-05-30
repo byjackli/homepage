@@ -149,18 +149,19 @@ function Styleguide() {
             </section>
             <section className="cards-and-slots">
                 <h2>Cards and Slots</h2>
-                <Card className="card" header="Card with Text" elements={
+                <Card header="Card with Text" elements={
                     <div>
                         <p>temporary text</p>
                     </div>} />
-                <Card className="card" header="Card with Slots" elements={
-                    <div className="card-cap">
-                        <Slot href="#" month="September" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
-                        <Slot href="#" month="May" date="4" header="no background image" />
-                        <Slot href="#" month="July" date="11" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
-                    </div>} />
-                <Slot href="#" month="September" date="22" header="no background image" />
-                <Slot href="#" month="May" date="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
+                <Card header="Card with Slots" slots={
+                    [
+                        <Slot href="#" line1="September" line2="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />,
+                        <Slot href="#" line1="May" line2="4" header="no background image" />,
+                        <Slot href="#" line1="July" line2="11" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
+                    ]
+                } />
+                <Slot href="#" line1="September" line2="22" header="no background image" />
+                <Slot href="#" line1="May" line2="22" header="background image" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/62054280_837856996600363_8628047517587627838_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=uOIFhXKuPo4AX-o6lwg&oh=c0577da8f21509d64e81733abdf82b0c&oe=5EF183EB" tags={["boat", "car", "train"]} />
             </section>
         </main>
     )
