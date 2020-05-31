@@ -32,3 +32,9 @@ export function Intext({href, label, ...rest}) {
         </a>
     );
 }
+
+export function Tag(props) {
+    return (
+        <Link className="tag" key={props.tag} to={`/tag/${props.tag}`}>#{props.tag}</Link>
+    )
+}

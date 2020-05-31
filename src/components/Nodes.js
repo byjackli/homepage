@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Tag } from '../components/Clicks';
 
 
 // Card element, use when neccessary
@@ -35,7 +35,7 @@ export function Slot(props) {
             return (
                 <div className="hrzTL tagList">
                     {props.tags.map(tag => (
-                        <Link className="tag" key={tag} to={`/tag/${tag}`}>#{tag}</Link>
+                        <Tag tag={tag} />
                     ))}
                 </div>
             )
@@ -47,10 +47,7 @@ export function Slot(props) {
     function renderBG() {
         if (props.image) {
             return <div className="slot-bg" style={{
-                backgroundImage: `linear-gradient(0deg, #FFFFFFBF, #FFFFFFBF), url(${props.image})`,
-                backgroundPosition: `center`,
-                backgroundSize: `cover`,
-                backgroundRepeat: `no-repeat`
+                backgroundImage: `linear-gradient(0deg, #FFFFFFBF, #FFFFFFBF), url(${props.image})`
             }}></div>;
         }
         else if (props.color) {

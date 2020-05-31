@@ -8,7 +8,7 @@ class Resume extends Component {
         super(props);
         this.state = {
             courses: null,
-            usercourses: null,
+            user_courses: null,
         }
     }
     componentDidMount() {
@@ -16,15 +16,15 @@ class Resume extends Component {
         const db = firebase.firestore();
 
         db.collection('courses').get().then(snapshotCourses => {
-            let allcourses = new Map();
+            let allCourses = new Map();
             snapshotCourses.docs.forEach(doc => {
-                allcourses.set(doc.id, doc.data());
+                allCourses.set(doc.id, doc.data());
             })
 
             db.collection('users-courses').orderBy('year', 'desc').orderBy('term').orderBy('course').get().then(snapshotUserCourses => {
                 this.setState({
-                    usercourses: snapshotUserCourses.docs,
-                    courses: allcourses
+                    user_courses: snapshotUserCourses.docs,
+                    courses: allCourses
                 });
             });
         });
@@ -222,7 +222,7 @@ class Resume extends Component {
                             <p>University at Buffalo - Expected May 2021.</p>
                             <p>Computer Science Major, Communications Minor</p>
                             <div className="card-vrt">
-                                {this.state.usercourses ? this.renderSlots(this.state.usercourses) : <p>loading courses ...</p>}
+                                {this.state.user_courses ? this.renderSlots(this.state.user_courses) : <p>loading courses ...</p>}
                             </div>
                         </div>
                     } />
