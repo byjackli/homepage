@@ -26,9 +26,6 @@ class Resume extends Component {
                     usercourses: snapshotUserCourses.docs,
                     courses: allcourses
                 });
-                console.info(this.state.courses);
-                console.info(this.state.courses.get("ARC211"));
-                console.info(this.state.usercourses);
             });
         });
     };

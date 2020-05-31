@@ -219,48 +219,48 @@ function App() {
   //       "tags": []
   //     })
   //   })
-    // courses.forEach(elem => {
-    //   dbCourses.doc(`${elem.prefix}${elem.num}`).set({
-    //     "prefix": elem.prefix,
-    //     "num": elem.num,
-    //     "name": elem.name,
-    //     "link": elem.link
-    //   })
-    // })
-    // tags.forEach(elem => {
-    //   dbTags.doc(elem.name).set({
-    //     "name": elem.name,
-    //     "desc": elem.desc
-    //   })
-    // })
-    // resumes.forEach(elem => {
-    //   dbResumes.doc(`resume${elem.userid}`).set({
-    //     "userid": "",
-    //     "contact": {
-    //       "email": "jack7598@gmail.com",
-    //       "email_school": "jackli@buffalo.edu",
-    //       "email_work": "email.byjackli.com",
-    //       "phone": 3474764944,
-    //     },
-    //     "courses": [
+  // courses.forEach(elem => {
+  //   dbCourses.doc(`${elem.prefix}${elem.num}`).set({
+  //     "prefix": elem.prefix,
+  //     "num": elem.num,
+  //     "name": elem.name,
+  //     "link": elem.link
+  //   })
+  // })
+  // tags.forEach(elem => {
+  //   dbTags.doc(elem.name).set({
+  //     "name": elem.name,
+  //     "desc": elem.desc
+  //   })
+  // })
+  // resumes.forEach(elem => {
+  //   dbResumes.doc(`resume${elem.userid}`).set({
+  //     "userid": "",
+  //     "contact": {
+  //       "email": "jack7598@gmail.com",
+  //       "email_school": "jackli@buffalo.edu",
+  //       "email_work": "email.byjackli.com",
+  //       "phone": 3474764944,
+  //     },
+  //     "courses": [
 
-    //     ],
-    //     "projects": [
+  //     ],
+  //     "projects": [
 
-    //     ],
-    //     "social_media": {
-    //       "linkedin": "byjackli",
-    //       "github": "byjackli",
-    //       "twitter": "byjackli",
-    //       "instagram": "byjackli",
-    //       "pinterest": "byjackli",
-    //       "spotify": "byjackli",
-    //       "facebook": "byjackli",
-    //       "youtube": "byjackli",
-    //       "tiktok": "byjackli",
-    //     }
-    //   })
-    // })
+  //     ],
+  //     "social_media": {
+  //       "linkedin": "byjackli",
+  //       "github": "byjackli",
+  //       "twitter": "byjackli",
+  //       "instagram": "byjackli",
+  //       "pinterest": "byjackli",
+  //       "spotify": "byjackli",
+  //       "facebook": "byjackli",
+  //       "youtube": "byjackli",
+  //       "tiktok": "byjackli",
+  //     }
+  //   })
+  // })
 
   // }
   // addToDB();
@@ -277,7 +277,29 @@ function App() {
           <Route path="/Signup" exact component={Signup} />
           <Route path="/styleguide" exact component={Styleguide} />
         </Switch>
-        <Footer />
+        <Footer right={[
+          <ol key={"1"}>
+            <li className="style5">Contact</li>
+            <li>347 476 - 4944</li>
+            <li>jackli@buffalo.edu</li>
+            <li>email@byjackli.com</li>
+          </ol>,
+          <ol key={"2"}>
+          <li className="style5">Proudly built with</li>
+            <li>- Javascript</li>
+            <li>- Reactjs</li>
+            <li>- Visual Studio Code</li>
+            <li>- Firebase</li>
+          </ol>,
+          <ol key={"3"}>
+          <li className="style5">Other projects</li>
+            <li>Travel - help travelers make decisions</li>
+            <li>Photo - immersive instagram experience</li>
+            <li>Focus - chrome extensions to improve focus</li>
+            <li>Lyrics - music and lyrics side-by-side</li>
+            <li>Playlists - share your spotify playlists</li>
+          </ol>
+        ]} />
       </div>
     </Router>
   );
