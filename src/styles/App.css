@@ -3,6 +3,8 @@
     02. GENERAL
     03. COMPONENTS
     04. RESUME
+    05. ABOUT
+    06. PROJECT
     98. STYLEGUIDE
     99. TOP LEVEL
 
@@ -68,41 +70,74 @@ main {
   padding: 50px 75px;
   padding-top: calc(50px + var(--navheight));
 }
+.pagecover {
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+}
+.pagecover-bg {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  top: 0;
+  overflow: hidden; 
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  filter: blur(.25em);
+  -webkit-filter: blur(.25em);
+  transform: scale(1.2);
+  
+  z-index: 0;
+}
 
 /* headings */
 h1, h2, h3, h4, h5, 
-.style1, .style2, .style3, .style4, .style5
+.style1, .style2, .style3, .style4, .style5, .stlye-mega
 { font-weight: 600; }
-h1, .style1 { font-size: 325%; }
-h2, .style2 { font-size: 275%; }
-h3, .style3 { font-size: 200%; }
-h4, .style4 { font-size: 125%; }
-h5, .style5 { font-size: 100%; }
+h1, .style1 { font-size: 3.25rem; }
+h2, .style2 { font-size: 2.75rem; }
+h3, .style3 { font-size: 2rem; }
+h4, .style4 { font-size: 1.25rem; }
+h5, .style5 { font-size: 1rem; }
+.style-mega { font-size: 8rem; }
 
 /* superscript */
 .sup {
   font-size: 50%;
-  bottom: 1em;
+  bottom: .5rem;
 }
 
-/* paragraph settings */
+/* text settings */
+strong { font-weight: 600; }
+
+/* paragraph */
 .content {
   word-break: break-all;
   white-space: pre-line;
 }
 
-.vrtTL, .hrzTL, .hrzBT {
+/* positioning */
+.center, .vrtTL, .hrzTL, .hrzTC, .hrzBT, .hrzEV {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.hrzTL, .hrzBT { flex-direction: row; }
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.hrzTL, .hrzTC, .hrzBT, .hrzEV { flex-direction: row; }
 .hrzBT { justify-content: space-between; }
+.hrzEV { justify-content: space-evenly;}
 
 /* scrollbar */
 *::-webkit-scrollbar {
-  width: .5em;
+  width: .5rem;
   border-radius: 15px;
 } 
 *::-webkit-scrollbar-track {
@@ -184,12 +219,12 @@ a:link, a:visited {
   
   left: 0;
   bottom: -1px;
-  height: .5em;
+  height: .5rem;
   z-index: -1;
   transition: all var(--out);
 }
 .intext:link:hover::after, .intext:link:focus::after {
-  height: 1.5em;
+  height: 1.5rem;
   bottom: 0;
   background-color: var(--BrandL);
   transition: all var(--in);
@@ -322,6 +357,10 @@ ol {
   position: absolute;
   top: 0;
   left: 0;
+  
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 /* Tag */
 a.tag {
@@ -485,6 +524,31 @@ main.resume>div {
 main.resume .card {
   width: 32%;
 }
+
+
+
+/* ========= 06 PROJECT ========= */
+main.project {
+  padding: 0;
+  padding-top: var(--navheight);
+}
+main.project section { 
+  min-height: 100vh;
+  height: fit-content;
+  overflow: hidden;
+  background-color: var(--LightL);
+
+  z-index: 1;
+}
+main.project section>* {
+  padding: .05em;
+}
+main.project section.details>div {
+  width: 100%;
+  height: 100%;
+}
+main.project ol:not(:first-of-type) { width: 35%; }
+main.project .links li { padding: .5em;}
 
 
 

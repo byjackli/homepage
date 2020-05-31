@@ -31,3 +31,9 @@ export function Intext(props) {
         </a>
     );
 }
+
+export function Tag(props) {
+    return (
+        <Link className="tag" key={props.tag} to={`/tag/${props.tag}`}>#{props.tag}</Link>
+    )
+}

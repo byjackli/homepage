@@ -6,7 +6,7 @@ import './styles/App.css';
 import { Navbar, Footer } from './components/Navigation';
 import Resume from './pages/Resume';
 import About from './pages/About';
-import Projects from './pages/Projects';
+import Project from './pages/Project';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Styleguide from './pages/Styleguide';
@@ -272,9 +272,10 @@ function App() {
         <Switch>
           <Route path={["/", "/resume"]} exact component={Resume} />
           <Route path="/about" exact component={About} />
-          <Route path="/projects" exact component={Projects} />
-          <Route path="/Signin" exact component={Signin} />
-          <Route path="/Signup" exact component={Signup} />
+          <Route path={["/project", "/projects"]} exact component={Project} />
+          <Route path="/project/:id" component={Project} />
+          <Route path="/signin" exact component={Signin} />
+          <Route path="/signup" exact component={Signup} />
           <Route path="/styleguide" exact component={Styleguide} />
         </Switch>
         <Footer />

@@ -21,7 +21,7 @@ export function Navbar(props) {
                 <div>
                     <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
                     <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
-                    <NavLink className="navlink" to="/projects"><div className="button-box-nofill">Projects</div></NavLink>
+                    <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
                     <NavLink className="navlink" to="/signin"><div className="button-box-nofill">Sign In</div></NavLink>
                     <PillFill label="Create Account" href="/signup" type="fill" />
                 </div>
