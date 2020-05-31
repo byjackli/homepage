@@ -63,58 +63,75 @@ class Project extends Component {
         let project = this.state.projects.get(this.state.id);
 
         if (project) {
-            return (
-                <>
+            if (project.upcoming) {
+                return (
                     <section className="pagecover center" >
                         <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
                         <h1 className="style-mega">{project.name}</h1>
                         <p>{project.desc}</p>
+                        <p>This is an <strong>upcoming project</strong>; follow me on <i className="fab fa-twitter"></i><Intext href="https://twitter.com/byjackli" label="twitter"/> for the latest information!</p>
                         <ol className="hrzEV links">
                             {project.links ? this.objToList(project.links, function (key, value) {
                                 return (<li key={key}>{key === "website" ? <i className="fas fa-globe"></i> : <i className={`fab fa-${key}`}></i>} <Intext href={value} label={key} /></li>);
                             }) : null}
                         </ol>
                     </section>
-                    <section className="details center">
-                        <div className="hrzEV" >
-                            <ol>
-                                <h2>Synopsis</h2>
-                                <li>The <strong>problem</strong> {project.problem}.</li>
-                                <li>&nbsp;</li>
-                                <li>The <strong>solution</strong> {project.solution}.</li>
-                                <li>&nbsp;</li>
-                                <li>The <strong>process</strong> {project.process}.</li>
-                                <li>&nbsp;</li>
-                                <li>The <strong>tags</strong> associated with this project.</li>
-                                <li>
-                                    {project.tags ?
-                                        <div className="hrzTL tagList">
-                                            {project.tags.map(tag => (
-                                                <Tag tag={tag} />
-                                            ))}
-                                        </div> : null
-                                    }</li>
-                            </ol>
-                            <ol>
-                                <h2>Tools</h2>
-                                {project.tools ? this.objToList(project.tools, function (key, value) {
-                                    return (<li key={key}><strong>{key}</strong> - {value}</li>);
+                )
+            }
+            else {
+                return (
+                    <>
+                        <section className="pagecover center" >
+                            <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
+                            <h1 className="style-mega">{project.name}</h1>
+                            <p>{project.desc}</p>
+                            <ol className="hrzEV links">
+                                {project.links ? this.objToList(project.links, function (key, value) {
+                                    return (<li key={key}>{key === "website" ? <i className="fas fa-globe"></i> : <i className={`fab fa-${key}`}></i>} <Intext href={value} label={key} /></li>);
                                 }) : null}
                             </ol>
-                        </div>
-                    </section>
-                    <section className="center">
-                        <h2>Wireframe &amp; Notes</h2>
-                        
-                        <p>What are you waiting for? Go ahead and check out the &nbsp; <PillFill href="#" type="fill" label="Final Product"/></p>
-                        
-                    </section>
-                    <section className="center">
-                        <h2>Explore other projects by Jack</h2>
-                        
-                    </section>
-                </>
-            )
+                        </section>
+                        <section className="details center">
+                            <div className="hrzEV" >
+                                <ol>
+                                    <h2>Synopsis</h2>
+                                    <li>The <strong>problem</strong> {project.problem}.</li>
+                                    <li>&nbsp;</li>
+                                    <li>The <strong>solution</strong> {project.solution}.</li>
+                                    <li>&nbsp;</li>
+                                    <li>The <strong>process</strong> {project.process}.</li>
+                                    <li>&nbsp;</li>
+                                    <li>The <strong>tags</strong> associated with this project.</li>
+                                    <li>
+                                        {project.tags ?
+                                            <div className="hrzTL tagList">
+                                                {project.tags.map(tag => (
+                                                    <Tag tag={tag} />
+                                                ))}
+                                            </div> : null
+                                        }</li>
+                                </ol>
+                                <ol>
+                                    <h2>Tools</h2>
+                                    {project.tools ? this.objToList(project.tools, function (key, value) {
+                                        return (<li key={key}><strong>{key}</strong> - {value}</li>);
+                                    }) : null}
+                                </ol>
+                            </div>
+                        </section>
+                        <section className="center">
+                            <h2>Wireframe &amp; Notes</h2>
+
+                            <p>What are you waiting for? Go ahead and check out the &nbsp; <PillFill href="#" type="fill" label="Final Product" /></p>
+
+                        </section>
+                        <section className="center">
+                            <h2>Explore other projects by Jack</h2>
+
+                        </section>
+                    </>
+                )
+            }
         }
         else {
             return (
