@@ -187,13 +187,22 @@ a:link, a:visited {
   transition: all var(--out);
   z-index: 1;
 }
+.intext { 
+  background-image: linear-gradient( to right, var(--BrandS) 50%, var(--BrandL) 50%);
+  background-size: 200% 8px;
+  background-repeat: repeat-x;
+  background-position: 200% 100%;
+  transition: all var(--out);
+}
 .intext:hover, .intext:hover *, .intext:focus, .intext:focus * {
   outline: none;
   color: var(--LightL);
-  transition: all .2s;
+  background-size: 200% 100%;
+  background-position: 100% 100%;
+  transition: all var(--in);
 }
 .intext .fas { width: fit-content; }
-.intext:link::after {
+/* .intext:link::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -205,6 +214,12 @@ a:link, a:visited {
   z-index: -1;
   transition: all var(--out);
 }
+.intext:link:hover::after, .intext:link:focus::after {
+  height: 1.5em;
+  bottom: 0;
+  background-color: var(--BrandL);
+  transition: all var(--in);
+} */
 .intext:link:hover::after, .intext:link:focus::after {
   height: 1.5em;
   bottom: 0;
