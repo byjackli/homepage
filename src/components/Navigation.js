@@ -1,36 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Searchbar } from './Search';
 import { BoxFill, PillFill } from './Clicks';
 
 
 // Navigation bar, use this on hompage
-export function Navbar(props) {
-    // function toggleMenu() {
-    //     return <Menubar />;
-    // }
+export class Navbar extends Component {
 
-    return (
-        <nav>
-            <div className="top">
-                <div className="left">
-                    <Link to="#" aria-label="Menu"><i className="style3 fas fa-bars"></i></Link>
-                    <Link className="style3" to="/">byjackli</Link>
-                    <Searchbar />
-                </div>
-                <div>
-                    <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
-                    <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
-                    <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
-                    <NavLink className="navlink" to="/signin"><div className="button-box-nofill">Sign In</div></NavLink>
-                    <PillFill label="Create Account" href="/signup" type="fill" />
-                </div>
-            </div>
-            <div className="bottom">
-                {props.message}
-            </div>
-        </nav>
-    );
+    constructor(props) {
+        super(props);
+        this.state = {
+            menu: false
+        }
+    }
+
+    toggleMenu() {
+        this.setState({ menu: !this.state.menu });
+        console.log("pressed")
+    }
+    render() {
+        return (
+            <>
+                <nav>
+                    <div className="top">
+                        <div className="left">
+                            <Link to="#" aria-label="Menu" onClick={this.toggleMenu.bind(this)}><i className="style3 fas fa-bars"></i></Link>
+                            <Link className="style3" to="/">byjackli</Link>
+                            <Searchbar />
+                        </div>
+                        <div>
+                            <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
+                            <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
+                            <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
+                            <NavLink className="navlink" to="/signin"><div className="button-box-nofill">Sign In</div></NavLink>
+                            <PillFill label="Create Account" href="/signup" type="fill" />
+                        </div>
+                    </div>
+                    <div className="bottom">
+                        {this.props.message}
+                    </div>
+                </nav>
+                {this.state.menu && (
+                    <>
+                        <Menubar toggleMenu={this.toggleMenu.bind(this)} />
+                        <div className="modalbg" onClick={this.toggleMenu.bind(this)}></div>
+                    </>
+                )}
+            </>
+        );
+    }
 }
 
 
@@ -52,14 +70,43 @@ export function CompactNavbar(props) {
 
 // Menu Bar, use this on homepage
 export function Menubar(props) {
-    function doNothing() {
-        console.log("great");
+
+    function greetings() {
+        let date = new Date(), time = date.getHours() * 100 + date.getMinutes();
+        if (559 < time && time < 1200) { return `Morning`; }
+        else if (1200 < time && time < 1700) { return `Afternoon`; }
+        else if (1700 < time && time < 2001) { return `Evening`; }
+        else { return `Night`; }
     }
+
     return (
-        <div className="menubar vrtTL" style={{ height: `calc(100% - ${props.height}px)` }}>
+        <div className="menubar vrtTL">
             <div className="top">
-                <BoxFill href="#" label="close menu" type="fill" onClick={doNothing.bind()} />
-                {props.categories}
+                <BoxFill label="close menu" type="fill" onClick={props.toggleMenu} />
+                <div className="categories">
+                    <p>Greetings and Good {greetings()}!</p>
+                    <ol>
+                        <li>Jack</li>
+                        <li><BoxFill href="/resume" label="Resume" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/about" label="About" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/about" label="Contact" type="nofill" className="type4" /></li>
+                    </ol>
+                    <ol>
+                        <li>Projects</li>
+                        <li><BoxFill href="/project" label="See All" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/project/photos" label="Photos" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/project/focus" label="Focus" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
+                        <li><BoxFill href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
+                    </ol>
+                    <ol>
+                        <li>Account</li>
+                        <li><BoxFill label="Profile" type="nofill" className="type4 invalid" /></li>
+                        <li><BoxFill label="Language" type="nofill" className="type4 invalid" /></li>
+                        <li><BoxFill label="Country" type="nofill" className="type4 invalid" /></li>
+                    </ol>
+                </div>
             </div>
             <div className="bottom">
                 <BoxFill href="#" label="sign out" type="fill" />
@@ -78,7 +125,28 @@ export function Footer(props) {
                 <p>if you can't make sacrifices, then you need a new goal</p>
             </div>
             <div className="hrzTL">
-                {props.right}
+
+                <ol>
+                    <li className="style5">Contact</li>
+                    <li>347 476 - 4944</li>
+                    <li>jackli@buffalo.edu</li>
+                    <li>email@byjackli.com</li>
+                </ol>
+                <ol>
+                    <li className="style5">Proudly built with</li>
+                    <li>- Javascript</li>
+                    <li>- Reactjs</li>
+                    <li>- Visual Studio Code</li>
+                    <li>- Firebase</li>
+                </ol>
+                <ol>
+                    <li className="style5">Other projects</li>
+                    <li><a href="/project/travel">Travel - help travelers make decisions</a></li>
+                    <li><a href="/project/photos">Photos - immersive instagram experience</a></li>
+                    <li><a href="/project/focus">Focus - chrome extensions to improve focus</a></li>
+                    <li><a href="/project/lyrics">Lyrics - music and lyrics side-by-side</a></li>
+                    <li><a href="/project/playlists">Playlists - share your spotify playlists</a></li>
+                </ol>
             </div>
         </footer>
     );

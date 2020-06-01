@@ -278,29 +278,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/styleguide" exact component={Styleguide} />
         </Switch>
-        <Footer right={[
-          <ol key={"1"}>
-            <li className="style5">Contact</li>
-            <li>347 476 - 4944</li>
-            <li>jackli@buffalo.edu</li>
-            <li>email@byjackli.com</li>
-          </ol>,
-          <ol key={"2"}>
-          <li className="style5">Proudly built with</li>
-            <li>- Javascript</li>
-            <li>- Reactjs</li>
-            <li>- Visual Studio Code</li>
-            <li>- Firebase</li>
-          </ol>,
-          <ol key={"3"}>
-          <li className="style5">Other projects</li>
-            <li>Travel - help travelers make decisions</li>
-            <li>Photo - immersive instagram experience</li>
-            <li>Focus - chrome extensions to improve focus</li>
-            <li>Lyrics - music and lyrics side-by-side</li>
-            <li>Playlists - share your spotify playlists</li>
-          </ol>
-        ]} />
+        <Footer />
       </div>
     </Router>
   );

@@ -75,6 +75,7 @@ main {
   height: 100%;
 
   z-index: 1;
+  overflow: hidden;
 }
 .pagecover-bg {
   width: 100%; 
@@ -108,7 +109,7 @@ h5, .style5 { font-size: 1rem; }
   width: 100%;
   height: 10em;
   margin-bottom: 2em;
-  background-color: var(--BrandL);
+  padding: 1em 10em 0 10em;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -138,7 +139,7 @@ strong { font-weight: 600; }
 
 
 /* positioning */
-.center, .vrtTL, .hrzTL, .hrzTC, .hrzBT, .hrzEV {
+.center, .vrtTL, .vrtTC, .hrzTL, .hrzTC, .hrzBT, .hrzEV {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -148,7 +149,9 @@ strong { font-weight: 600; }
   justify-content: center;
   align-items: center;
 }
+.vrtTC { align-items: center;}
 .hrzTL, .hrzTC, .hrzBT, .hrzEV { flex-direction: row; }
+.hrzTC { justify-content: center; }
 .hrzBT { justify-content: space-between; }
 .hrzEV { justify-content: space-evenly;}
 
@@ -237,24 +240,6 @@ a:link, a:visited {
   transition: all var(--in);
 }
 .intext .fas { width: fit-content; }
-/* .intext:link::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  background: var(--BrandS);
-  
-  left: 0;
-  bottom: -1px;
-  height: .5rem;
-  z-index: -1;
-  transition: all var(--out);
-}
-.intext:link:hover::after, .intext:link:focus::after {
-  height: 1.5rem;
-  bottom: 0;
-  background-color: var(--BrandL);
-  transition: all var(--in);
-} */
 .intext:link:hover::after, .intext:link:focus::after {
   height: 1.5em;
   bottom: 0;
@@ -521,10 +506,14 @@ input[type='search']:focus {
   color: var(--LightL);
 }
 /* Menu bar */
-.menubar {
+.App>div.menubar, .menubar {
   width: 300px;
+  height: calc(100% - var(--navheight));
+  bottom: 0;
+  position: fixed;
   background-color: var(--LightL);
   justify-content: space-between;
+  z-index: 99;
 }
 .menubar * { width: 100%; }
 .menubar .button-box-fill { width: 100%; }
@@ -555,6 +544,16 @@ footer * {
 }
 footer p { padding-top: 15px; width: 250px;}
 footer ol { padding-left: 100px; }
+/* Modals */
+.App>div.modalbg {
+  width: 100%;
+  height: calc(100% - var(--navheight));
+  bottom: 0;
+  position: fixed;
+  background-color: var(--DarkM);
+  z-index: 97;
+}
+.invalid, .invalid * { cursor: not-allowed; }
 
 
 
@@ -605,6 +604,16 @@ main.project section.details>div {
 }
 main.project ol:not(:first-of-type) { width: 35%; }
 main.project .links li { padding: .5em;}
+main.project .gallery {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+main.project .gallery .card { 
+  width: 30%; 
+  margin: 1%;
+}
+
 
 
 

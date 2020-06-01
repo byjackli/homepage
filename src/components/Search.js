@@ -7,7 +7,7 @@ export function Searchbar() {
     //     // displays search suggestions
     // }
 
-    return <input className="fa-search" type="search" placeholder="&#xF002; Search byjackli" aria-label="Search byjackli" />;
+    return <input className="invalid fa-search" type="search" placeholder="&#xF002; Search byjackli" aria-label="Search byjackli" />;
 }
 
 export function Suggestbox() {

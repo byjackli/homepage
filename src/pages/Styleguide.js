@@ -21,35 +21,7 @@ class Styleguide extends Component {
                     <h2>Navigation</h2>
                     <Navbar message={<p><span className="style5">Test:</span> This is a test message!</p>} />
                     <CompactNavbar color="#B42637" />
-                    <Menubar
-                        height={75}
-                        categories={
-                            <div className="categories">
-                                <p>Good Morning Tony Stark!</p>
-                                <ol>
-                                    <li>Jack</li>
-                                    <li><BoxFill href="#" label="Resume" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="About" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Contact" type="nofill" className="type4" /></li>
-                                </ol>
-                                <ol>
-                                    <li>Projects</li>
-                                    <li><BoxFill href="#" label="See All" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Travel" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Photos" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Focus" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Lyrics" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Playlist" type="nofill" className="type4" /></li>
-                                </ol>
-                                <ol>
-                                    <li>Account</li>
-                                    <li><BoxFill href="#" label="Profile" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Language" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Country" type="nofill" className="type4" /></li>
-                                </ol>
-                            </div>
-                        }
-                    />
+                    <Menubar />
                     <Searchbar />
                     <Suggestbox />
                     <Footer right={[

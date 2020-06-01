@@ -69,7 +69,7 @@ class Project extends Component {
                         <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
                         <h1 className="style-mega">{project.name}</h1>
                         <p>{project.desc}</p>
-                        <p>This is an <strong>upcoming project</strong>; follow me on <i className="fab fa-twitter"></i><Intext href="https://twitter.com/byjackli" label="twitter"/> for the latest information!</p>
+                        <p>This is an <strong>upcoming project</strong>; follow me on <i className="fab fa-twitter"></i><Intext href="https://twitter.com/byjackli" label="twitter" /> for the latest information!</p>
                         <ol className="hrzEV links">
                             {project.links ? this.objToList(project.links, function (key, value) {
                                 return (<li key={key}>{key === "website" ? <i className="fas fa-globe"></i> : <i className={`fab fa-${key}`}></i>} <Intext href={value} label={key} /></li>);
@@ -125,10 +125,7 @@ class Project extends Component {
                             <p>What are you waiting for? Go ahead and check out the &nbsp; <PillFill href="#" type="fill" label="Final Product" /></p>
 
                         </section>
-                        <section className="center">
-                            <h2>Explore other projects by Jack</h2>
-
-                        </section>
+                        {this.renderGallery()}
                     </>
                 )
             }
@@ -136,8 +133,12 @@ class Project extends Component {
         else {
             return (
                 <>
-                    <p className="style3">{this.state.id} does not exist</p>
-                    <p>Feel free to check out my existing and upcoming projects!</p>
+                    <div className="pagecover center" >
+                        <div className="pagecover-bg center" ></div >
+                        <div className="pageheader">
+                            {<h1>{this.state.id}<span style={{fontSize: "inherit"}}> project does not exist!</span></h1> }
+                        </div>
+                    </div>
                     {this.renderGallery()}
                 </>
             )
@@ -145,18 +146,54 @@ class Project extends Component {
     };
 
     // render project gallery
-    renderGallery() {
-        return (
-            <div className="pageheader">
-                <h1>All Projects</h1>
-            </div>
-        )
+    renderGallery(standalone) {
+        let projects = this.state.projects;
+        function renderCard(map) {
+            let arr = []
+            map.forEach(project => {
+                arr.push(<Card header={project.name} elements={[
+                    <p>{project.desc}</p>,
+                    // <ol>
+                    //     <li>The <strong>problem</strong> {project.problem}.</li>
+                    //     <li>The <strong>solution</strong> {project.solution}.</li>
+                    // </ol>,
+
+                    // <ol className="hrzEV links">
+                    //     {project.links ? this.objToList(project.links, function (key, value) {
+                    //         return (<li key={key}>{key === "website" ? <i className="fas fa-globe"></i> : <i className={`fab fa-${key}`}></i>} <Intext href={value} label={key} /></li>);
+                    //     }) : null}
+                    // </ol>
+                ]}
+                />)
+            })
+            return arr;
+        }
+
+        if (projects) {
+
+            return (
+                <>
+                    <section className="pagecover vrtTC" >
+                        <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/80741289_600781257337769_2721757817576791725_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=B6YJOCK8C54AX8nVZZb&oh=acd9aebaadd2dfdbc2a9c9ee9ab1ee95&oe=5EFC2587)` }}></div >
+                        <div className="pageheader">
+                            {standalone ? <h1>All Projects</h1> : <h2>Explore other projects by Jack</h2>}
+                        </div>
+                        <div className="gallery">
+                            {this.state.projects ? renderCard(this.state.projects) : null}
+                        </div>
+                    </section>
+                </>
+            )
+        }
+        else {
+
+        }
     };
 
     render() {
         return (
             <main className="project">
-                {this.state.gallery ? this.renderGallery() : this.renderProject()}
+                {this.state.gallery ? this.renderGallery(true) : this.renderProject()}
             </main>
         );
     }
