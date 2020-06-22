@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from './config/firebase';
 
 import './styles/App.css';
+import './styles/Queries.css';
 import { Navbar, Footer } from './components/Navigation';
 import Resume from './pages/Resume';
 import About from './pages/About';

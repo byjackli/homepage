@@ -32,8 +32,8 @@ export class Navbar extends Component {
                             <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
                             <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
                             <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
-                            <NavLink className="navlink" to="/signin"><div className="button-box-nofill">Sign In</div></NavLink>
-                            <PillFill label="Create Account" href="/signup" type="fill" />
+                            <NavLink className="navlink invalid" to="#"/*to="/signin"*/><div className="button-box-nofill">Sign In</div></NavLink>
+                            <PillFill className="invalid" label="Create Account" /*href="/signup"*/ type="fill" />
                         </div>
                     </div>
                     <div className="bottom">
