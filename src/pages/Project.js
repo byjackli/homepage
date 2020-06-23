@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../config/firebase';
 import { Card, Slot } from '../components/Nodes';
-import { Intext, Tag, PillFill } from '../components/Clicks';
+import { Intext, Tag, Button } from '../components/Clicks';
 
 class Project extends Component {
     constructor(props) {
@@ -65,8 +65,8 @@ class Project extends Component {
         if (project) {
             if (project.upcoming) {
                 return (
-                    <section className="pagecover center" >
-                        <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
+                    <section className="pagecover vrtCC" >
+                        <div className="pagecover-bg header vrtCC" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
                         <h1 className="style-mega">{project.name}</h1>
                         <p>{project.desc}</p>
                         <p>This is an <strong>upcoming project</strong>; follow me on <i className="fab fa-twitter"></i><Intext href="https://twitter.com/byjackli" label="twitter" /> for the latest information!</p>
@@ -81,8 +81,8 @@ class Project extends Component {
             else {
                 return (
                     <>
-                        <section className="pagecover center" >
-                            <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
+                        <section className="pagecover vrtCC" >
+                            <div className="pagecover-bg header vrtCC" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${project.background})` }}></div >
                             <h1 className="style-mega">{project.name}</h1>
                             <p>{project.desc}</p>
                             <ol className="hrzEV links">
@@ -91,7 +91,7 @@ class Project extends Component {
                                 }) : null}
                             </ol>
                         </section>
-                        <section className="details center">
+                        <section className="details vrtCC">
                             <div className="hrzEV" >
                                 <ol>
                                     <h2>Synopsis</h2>
@@ -119,10 +119,10 @@ class Project extends Component {
                                 </ol>
                             </div>
                         </section>
-                        <section className="center">
+                        <section className="vrtCC">
                             <h2>Wireframe &amp; Notes</h2>
 
-                            <p>What are you waiting for? Go ahead and check out the &nbsp; <PillFill href="#" type="fill" label="Final Product" /></p>
+                            <p>What are you waiting for? Go ahead and check out the &nbsp; <Button href="#" shape="pill" color="fill" label="Final Product" /></p>
 
                         </section>
                         {this.renderGallery()}
@@ -133,8 +133,8 @@ class Project extends Component {
         else {
             return (
                 <>
-                    <div className="pagecover center" >
-                        <div className="pagecover-bg center" ></div >
+                    <div className="pagecover vrtCC" >
+                        <div className="pagecover-bg vrtCC" ></div >
                         <div className="pageheader">
                             {<h1>{this.state.id}<span style={{fontSize: "inherit"}}> project does not exist!</span></h1> }
                         </div>
@@ -174,7 +174,7 @@ class Project extends Component {
             return (
                 <>
                     <section className="pagecover vrtTC" >
-                        <div className="pagecover-bg center" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/80741289_600781257337769_2721757817576791725_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=B6YJOCK8C54AX8nVZZb&oh=acd9aebaadd2dfdbc2a9c9ee9ab1ee95&oe=5EFC2587)` }}></div >
+                        <div className="pagecover-bg vrtCC" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/80741289_600781257337769_2721757817576791725_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=105&_nc_ohc=B6YJOCK8C54AX8nVZZb&oh=acd9aebaadd2dfdbc2a9c9ee9ab1ee95&oe=5EFC2587)` }}></div >
                         <div className="pageheader">
                             {standalone ? <h1>All Projects</h1> : <h2>Explore other projects by Jack</h2>}
                         </div>

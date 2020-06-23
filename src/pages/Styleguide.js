@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, CompactNavbar, Menubar, Footer } from '../components/Navigation';
 import { Searchbar, Suggestbox } from '../components/Search';
 import { Card, Slot } from '../components/Nodes';
-import { BoxFill, PillFill, Intext } from '../components/Clicks';
+import { Button, Intext } from '../components/Clicks';
 
 
 class Styleguide extends Component {
@@ -117,10 +117,10 @@ class Styleguide extends Component {
                 </section>
                 <section className="buttons-and-links">
                     <h2>Buttons and Links</h2>
-                    <BoxFill href="/styleguide" label="box fill" type="fill" />
-                    <BoxFill href="/styleguide" label="box nofill" type="nofill" />
-                    <PillFill href="/styleguide" label="pill fill" type="fill" />
-                    <PillFill href="/styleguide" label="pill nofill" type="nofill" />
+                    <Button href="/styleguide" label="box fill" shape="box" color="fill" />
+                    <Button href="/styleguide" label="box nofill" shape="box" color="nofill" />
+                    <Button href="/styleguide" label="pill fill" shape="pill" color="fill" />
+                    <Button href="/styleguide" label="pill nofill" shape="pill" color="nofill" />
                     <Intext href="/styleguide" label="in-text and internal" />
                     <Intext href="https://www.instagram.com/byjackli" label="external" />
                     <Intext href="https://www.instagram.com/byjackli" label="new tab" target="_blank" />

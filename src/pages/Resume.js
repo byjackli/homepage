@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import firebase from '../config/firebase';
 import { Card, Slot } from '../components/Nodes';
 import { Intext } from '../components/Clicks';
+import Logo from '../images/logo.png';
+import Tallboy from '../images/tallboy.jpg';
+import Wideboy from '../images/wideboy.jpg';
 
 class Resume extends Component {
     constructor(props) {
@@ -9,12 +12,16 @@ class Resume extends Component {
         this.state = {
             courses: null,
             user_courses: null,
+            resume: false
         }
     }
     componentDidMount() {
+        this.getCourses();
+        this.setState({ resume: true })
+    };
 
+    getCourses() {
         const db = firebase.firestore();
-
         db.collection('courses').get().then(snapshotCourses => {
             let allCourses = new Map();
             snapshotCourses.docs.forEach(doc => {
@@ -28,7 +35,7 @@ class Resume extends Component {
                 });
             });
         });
-    };
+    }
 
     renderCards(cards, cb) {
         return (
@@ -50,52 +57,19 @@ class Resume extends Component {
                     <Slot
                         key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
                         href={this.state.courses.get(doc.data().course).link}
-                        header={`${doc.data().course} ${this.state.courses.get(doc.data().course).name}`}
-                        line1={doc.data().term}
-                        line2={doc.data().year}
-                        tags={doc.data().tags}
+                        content={[
+                            <p>{doc.data().year} {doc.data().term}</p>,
+                            <p>{doc.data().course} {this.state.courses.get(doc.data().course).name}</p>,
+                            <p>COMPLETED</p>
+                        ]}
                     />
                 ))
             }</>
         )
     }
-    // renderSlots(slots, cb) {
-    //     let arr = [];
-    //     slots.forEach(doc => {
-    //         let
-    //             data = doc.data(),
-    //             course = data.course,
-    //             actual = this.state.courses.get(course);
-    //         console.info(course);
-    //         console.info(actual.link);
-    //         arr.push(
-    //             <Slot
-    //                 key={`${data.course}${data.term}${data.year}`}
-    //                 // href={this.state.courses.get(course).link}
-    //                 // header={this.state.courses.get(course).name}
-    //                 line1={data.term}
-    //                 line2={data.year}
-    //                 tags={data.tags}
-    //             />
-    //         )
-    //     })
-    //     return (
-    //         <>{
-    //             arr
-    //         }</>
-    //     )
-    // }
-
-    render() {
+    renderResume() {
         return (
-            <main className="resume">
-                {/* {this.state.cards ? this.renderCards() :
-                    <div>
-                        <h2>loading ...</h2>
-                        <p>This may take a while depending on your device and network connection.</p>
-                    </div>
-                } */}
-
+            <section className="resume">
                 <div className="hrzBT">
                     <Card className="card" header="Contact" elements={
                         <div>
@@ -151,7 +125,7 @@ class Resume extends Component {
                             <p><Intext href="https://paulineroseclance.com/pdf/-Langford.pdf" label="[source]" /></p>
                             <div className="hrzTL">
                                 <ol>
-                                    <h4>Programming</h4>
+                                    <li><h4>Programming</h4></li>
                                     <li>- programming languages</li>
                                     <li>- interpreting documentation</li>
                                     <li>- web security</li>
@@ -162,7 +136,7 @@ class Resume extends Component {
                                     <li>- googling and researching</li>
                                 </ol>
                                 <ol>
-                                    <h4>Camera</h4>
+                                    <li><h4>Camera</h4></li>
                                     <li>- io interfaces</li>
                                     <li>- photography and videography</li>
                                     <li>- photo manipulations</li>
@@ -170,14 +144,14 @@ class Resume extends Component {
                                     <li>- video editing and animating</li>
                                 </ol>
                                 <ol>
-                                    <h4>Design</h4>
+                                    <li><h4>Design</h4></li>
                                     <li>- web design and wireframing</li>
                                     <li>- print and digital work</li>
                                     <li>- brand development</li>
                                     <li>- interpreting styleguides</li>
                                 </ol>
                                 <ol>
-                                    <h4>Communication</h4>
+                                    <li><h4>Communication</h4></li>
                                     <li>- proficient English</li>
                                     <li>- conversational Mandarin</li>
                                     <li>- conversational ChaoZhou</li>
@@ -186,7 +160,7 @@ class Resume extends Component {
                                     <li>- cloud and file sharing</li>
                                 </ol>
                                 <ol>
-                                    <h4>Bucket list</h4>
+                                    <li><h4>Bucket list</h4></li>
                                     <li>- auto mechanic</li>
                                     <li>- pianist</li>
                                     <li>- 3d modeller</li>
@@ -206,9 +180,23 @@ class Resume extends Component {
                             <p>On-going projects, tasks, and more.</p>
                             <p>Updated every Sunday morning, 5am EDT.</p>
                             <div className="card-vrt">
-                                <Slot line1="May" line2="17" header="byjackli personal project" tags={["motivation", "exploration", "purpose"]} image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
-                                <Slot line1="June" line2="6" header="lyrics.byjackli project" tags={["motivation", "exploration", "purpose"]} href="/project/lyrics" image="https://www.scdn.co/i/_global/open-graph-default.png" />
-                                <Slot line1="June" line2="6" header="Internet Security Course" tags={["motivation", "exploration", "purpose"]} href="https://www.udemy.com/course/du-internet-security/" image="https://img-a.udemycdn.com/course/240x135/2506082_01cc_3.jpg" />
+                                <Slot content={[
+                                    <p>May 17, 2020</p>,
+                                    <p>byjackli personal project</p>,
+                                    <p>STABLE RELEASE</p>
+                                ]} />
+                                <Slot content={[
+                                    <p>June 6, 2020</p>,
+                                    <p>lyrics.byjackli project</p>,
+                                    <p>STABLE RELEASE</p>
+                                ]}
+                                    href="/project/lyrics" />
+                                <Slot content={[
+                                    <p>June 6, 2020</p>,
+                                    <p>Internet Security Course</p>,
+                                    <p>ON HOLD</p>
+                                ]}
+                                    href="https://www.udemy.com/course/du-internet-security/" />
                                 <Slot line1="June" line2="20" header="photos.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/60487159_410125876380768_2939073432189000809_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=100&_nc_ohc=hqTFIMTXtFQAX_Ss3Ra&oh=feb37d45b02de0f3570377beccc09ec7&oe=5EFB39FD" />
                                 <Slot line1="June" line2="22" header="Blender 3D Modelling Course" tags={["motivation", "exploration", "purpose"]} href="https://www.youtube.com/playlist?list=PLjEaoINr3zgEq0u2MzVgAaHEBt--xLB6U" image="https://i.ytimg.com/vi/TPrnSACiTJ4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBqaXGYiz5GZIERze_tlHPfuEW-4A" />
                                 <Slot line1="June" line2="27" header="playlists.byjackli project" image="https://i.scdn.co/image/ab67706c0000da846cef7879d0c41b96614fb96b" />
@@ -231,13 +219,35 @@ class Resume extends Component {
                             <p>Only past computer science projects and academic assignments listed in this section.</p>
                             <div className="card-vrt">
                                 <Slot href="http://webdev.cse.buffalo.edu/cse410/gr8/app/#/login" line1="Spring" line2="2020" header="TOPIX: Collaborative Learning" />
-                                <Slot href="https://www.ubphotoclub.org" line1="June" line2="2018" header="UB Photo Club"  />
+                                <Slot href="https://www.ubphotoclub.org" line1="June" line2="2018" header="UB Photo Club" />
                                 <Slot href="https://github.com/jackli1337/project-delta" line1="November" line2="2018" header="UB Hackathon" />
                                 <Slot href="https://www.hsdlas.org" line1="June" line2="2014" header="High School for Dual Language and Asian Studies" />
                             </div>
                         </div>
                     } />
                 </div>
+            </section>
+        )
+    }
+
+    render() {
+        console.log("address", window.location.pathname);
+        return (
+            <main className="resume">
+                {window.location.pathname === "/" ?
+                    <>
+                        <section className="pagecover vrtCC splash">
+                            <div className="pagecover-bg header vrtCC" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${Wideboy})` }}></div>
+                            <div className="logo-container vrtCC fade-in dragoff">
+                                <img className="logo-homepage dragoff" src={Logo} alt="by jack li logo, letter J and L" />
+                                <p className="style4 dragoff">DARE TO IMAGINE.</p>
+                            </div>
+                            <p className="more fade-in expand dragoff">›››</p>
+                        </section>
+                        {this.state.resume ? this.renderResume() : null}
+                    </> :
+                    this.renderResume()
+                }
             </main>
         );
     };

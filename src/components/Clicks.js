@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom';
 
 
 // Button -- Box Styled, Colored
-export function BoxFill({ label, type, ...rest }) {
-    return <a className="button-root" {...rest}><div className={`button-box-${type}`}>{label}</div></a>;
-}
-
-
-// Button -- Pill Styled, Colored
-export function PillFill({ label, type, ...rest }) {
-    return <a className="button-root" {...rest}><div className={`button-pill-${type}`}>{label}</div></a>;
+export function Button({ label, shape, color, ...rest }) {
+    return <a className="button-root" {...rest}><div className={`button-${shape}-${color}`}>{label}</div></a>;
 }
 
 

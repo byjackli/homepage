@@ -5,6 +5,7 @@
     04. RESUME
     05. ABOUT
     06. PROJECT
+    97. LOGO
     98. STYLEGUIDE
     99. TOP LEVEL
 
@@ -27,8 +28,9 @@
   --LightM: #FFFFFF;   /* Clean White byjackli - Suitable for card and block backgrounds. */
   --LightS: #FFFFFFBF; /* Clean White byjackli - Suitable for overlays */
 
-  /* height */
+  /* scale */
   --navheight: 107px;
+  --width: 100vw;
 
   /* duration */
   --in: .1s;
@@ -39,10 +41,14 @@
 
 
 /* ========= 02 GENERAL ========= */
-html, body, #root, .App, .App>div {
-  width: 100%;
-  height: 100%;
+html, body, #root, .App {
+  width: var(--width);
+  max-width: 100%;
+  height: 100vh;
   background-color: var(--LightL);
+}
+.App{
+  /* overflow: hidden; */
 }
 
 * {
@@ -64,22 +70,31 @@ code {
 }
 
 main {
-  width: 100%;
-  min-height: 100%;
+  width: var(--width);
+  max-width: 100%;
+  min-height: 100vh;
   height: fit-content;
   padding: 50px 75px;
   padding-top: calc(50px + var(--navheight));
 }
-.pagecover {
-  width: 100%;
-  height: 100%;
-
+section {
+  width: var(--width);
+  max-width: 100%;
   z-index: 1;
+  background-color: var(--LightL);
   overflow: hidden;
 }
+
+.pagecover {
+  width: var(--width);
+  max-width: 100%;
+  height: 100vh;
+
+  z-index: 1;
+}
 .pagecover-bg {
-  width: 100%; 
-  height: 100%;
+  width: var(--width); 
+  height: 100vh;
   position: absolute;
   top: 0;
   overflow: hidden; 
@@ -88,11 +103,15 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
 
-  filter: blur(.25em);
-  -webkit-filter: blur(.25em);
+  filter: blur(.08em);
+  -webkit-filter: blur(.08em);
   transform: scale(1.2);
   
   z-index: 0;
+}
+.header {
+  position: fixed;
+  z-index: -1;
 }
 
 /* headings */
@@ -139,21 +158,23 @@ strong { font-weight: 600; }
 
 
 /* positioning */
-.center, .vrtTL, .vrtTC, .hrzTL, .hrzTC, .hrzBT, .hrzEV {
+.vrtCC, .vrtTL, .vrtTC, .vrtBT, .vrtEV, .vrtCL, .hrzCC, .hrzCR, .hrzTL, .hrzTR, .hrzTC, .hrzBT, .hrzEV {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.center {
+.vrtCC, .hrzCC {
   justify-content: center;
   align-items: center;
 }
-.vrtTC { align-items: center;}
-.hrzTL, .hrzTC, .hrzBT, .hrzEV { flex-direction: row; }
-.hrzTC { justify-content: center; }
-.hrzBT { justify-content: space-between; }
-.hrzEV { justify-content: space-evenly;}
+
+.vrtTC, .hrzCR { align-items: center;}
+.hrzCC, .hrzCR, .hrzTL, .hrzTR, .hrzTC, .hrzBT, .hrzEV { flex-direction: row; }
+.hrzCR, .hrzTR { justify-content: flex-end; }
+.vrtCL, .hrzTC { justify-content: center; }
+.hrzBT, .vrtBT { justify-content: space-between; }
+.hrzEV, .vrtEV { justify-content: space-evenly;}
 
 /* scrollbar */
 *::-webkit-scrollbar {
@@ -169,6 +190,14 @@ strong { font-weight: 600; }
 }
 *::-webkit-scrollbar-button {
   background-color: var(--DarkM);
+}
+
+/* selection */
+.dragoff {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 
@@ -328,14 +357,13 @@ ol {
 .slot {
   width: 100%;
   height: fit-content;
-  padding: 20px;
-  padding-top: 0;
-  margin: 15px 0;
+  padding: 15px 0;
   overflow: hidden;
   transition: all var(--out);
+  border-bottom: solid 1px var(--DarkS);
 }
 .slot:hover {
-  transform: scale(1.05);
+  transform: scale(.98);
   transition: all var(--in);
 }
 .slot>a {
@@ -351,38 +379,20 @@ ol {
 }
 .slot:first-of-type { margin-top: 0px; }
 .slot:last-of-type { margin-bottom: 0px; }
-.slot-time {
-  min-width: 120px;
-  background-color: var(--BrandL);
-  padding: 15px;
+.slot-content>* {
+  text-align: left;
+  margin: auto 0;
+  width: 30%;
 }
-.slot-time>* {
-  color: var(--LightL);
+.slot-content>p:nth-of-type(1){
+  width: 20%;
 }
-.slot .hrzTL { flex-wrap: nowrap; }
-.slot h4 {
-  padding: 15px 35px;
-}
-.slot .hrzTL {
-  width: fit-content;
-  min-height: 25px;
-  height: fit-content; 
-  z-index: 1;
+.slot-content>p:nth-of-type(2){
+  width: 40%;
+  font-weight: 600;
 }
 .slot .hrzTL:first-of-type { margin-bottom: 10px;}
-.slot .tagList { z-index: 3; flex-wrap: wrap; }
-.slot .slot-bg {
-  width: 100%;
-  height: 100%;
-  
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+
 /* Tag */
 a.tag {
   padding: 5px 10px;
@@ -418,17 +428,20 @@ nav>div, .compact-navbar {
 }
 nav { 
   flex-direction: column; 
-  width: 100%;
+  width: var(--width);
+  max-width: 100%;
   height: fit-content;
   background-color: var(--LightL);
   box-shadow: 0px -5px 20px var(--DarkM);
   position: fixed;
+  overflow: hidden;
 }
 nav .top { 
   height: 75px;
   justify-content: space-between; 
 }
 nav .bottom {
+  width: 100%;
   min-height: 32px;
   height: fit-content;
   background-color: var(--BrandL);
@@ -512,7 +525,7 @@ input[type='search']:focus {
 /* Menu bar */
 .App>div.menubar, .menubar {
   width: 300px;
-  height: calc(100% - var(--navheight));
+  height: calc(100vh - var(--navheight));
   bottom: 0;
   position: fixed;
   background-color: var(--LightL);
@@ -526,7 +539,7 @@ input[type='search']:focus {
   height: 100%;
   overflow-y: hidden;
 }
-.menubar .categories:hover { overflow-y: scroll; }
+.menubar .categories:hover { overflow-y: auto; }
 .menubar p {
   width: 250px;
   padding: 40px;
@@ -537,11 +550,13 @@ input[type='search']:focus {
 .menubar ol li:first-of-type { color: var(--DarkM); }
 /* Footer */
 footer.hrzTL {
-  width: 100%;
+  width: var(--width);
+  max-width: 100%;
   height: fit-content;
   background-color: var(--BrandL);
   padding: 45px;
   justify-content: space-between;
+  overflow: hidden;
 }
 footer * {
   color: var(--LightL);
@@ -550,8 +565,9 @@ footer p { padding-top: 15px; width: 250px;}
 footer ol { padding-left: 100px; }
 /* Modals */
 .App>div.modalbg {
-  width: 100%;
-  height: calc(100% - var(--navheight));
+  width: var(--width);
+  max-width: 100%;
+  height: calc(100vh - var(--navheight));
   bottom: 0;
   position: fixed;
   background-color: var(--DarkM);
@@ -562,10 +578,23 @@ footer ol { padding-left: 100px; }
 
 
 /* ========= 04 RESUME ========= */
-main.resume>div {
+main.resume {
+  padding: 0px;
+}
+section.splash { 
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+
+  z-index: 1;
+}
+section.resume {
+  padding: 75px;
+}
+section.resume>div {
   padding-bottom: 3%;
 }
-main.resume .card {
+section.resume .card {
   width: 32%;
 }
 
@@ -617,6 +646,58 @@ main.project .gallery .card {
   width: 30%; 
   margin: 1%;
 }
+
+
+
+
+/* ========= 96 ANIMATIONS ========= */
+.fade-in {
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.42, 0, 0.35, 0.99) both;
+	        animation: fade-in 1.2s cubic-bezier(0.42, 0, 0.35, 0.99) both;
+}
+@-webkit-keyframes fade-in {
+  0% { opacity: 0; transform: scale(.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-in {
+  0% { opacity: 0; transform: scale(.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.expand {
+	-webkit-animation: expand 4s cubic-bezier(0.42, 0, 0.35, 0.99) infinite;
+	        animation: expand 4s cubic-bezier(0.42, 0, 0.35, 0.99) infinite;
+}
+@-webkit-keyframes expand {
+  0% { letter-spacing: -.75em; opacity: 0; }
+  60% { opacity: 0.8; }
+  100% { letter-spacing: .1em; opacity: 0; }
+}
+@keyframes expand {
+  0% { letter-spacing: -.75em; opacity: 0; }
+  60% { opacity: 0.8; }
+  100% { letter-spacing: .1em; opacity: 0; }
+}
+
+
+
+/* ========= 97 LOGO ========= */
+.logo-container * {
+  font-weight: 800;
+  color: var(--BrandL);
+}
+.logo-homepage {
+  width: 10em;
+}
+.more {
+  position: absolute;
+  top: 90%;
+  font-size: 2em;
+  text-shadow: 0px 2px 4px var(--LightM);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
 
 
 

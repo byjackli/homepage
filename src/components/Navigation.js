@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Searchbar } from './Search';
-import { BoxFill, PillFill } from './Clicks';
+import { Button } from './Clicks';
 
 
 // Navigation bar, use this on hompage
@@ -21,19 +21,16 @@ export class Navbar extends Component {
     render() {
         return (
             <>
-                <nav>
+                <nav {...this.props}>
                     <div className="top">
                         <div className="left">
                             <Link to="#" aria-label="Menu" onClick={this.toggleMenu.bind(this)}><i className="style3 fas fa-bars"></i></Link>
                             <Link className="style3" to="/">byjackli</Link>
-                            <Searchbar />
                         </div>
                         <div>
                             <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
                             <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
                             <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
-                            <NavLink className="navlink invalid" to="#"/*to="/signin"*/><div className="button-box-nofill">Sign In</div></NavLink>
-                            <PillFill className="invalid" label="Create Account" /*href="/signup"*/ type="fill" />
                         </div>
                     </div>
                     <div className="bottom">
@@ -82,34 +79,26 @@ export function Menubar(props) {
     return (
         <div className="menubar vrtTL">
             <div className="top">
-                <BoxFill label="close menu" type="fill" onClick={props.toggleMenu} />
                 <div className="categories">
                     <p>Greetings and Good {greetings()}!</p>
                     <ol>
                         <li>Jack</li>
-                        <li><BoxFill href="/resume" label="Resume" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/about" label="About" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/about" label="Contact" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/resume" label="Resume" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/about" label="About" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/about" label="Contact" type="nofill" className="type4" /></li>
                     </ol>
                     <ol>
                         <li>Projects</li>
-                        <li><BoxFill href="/project" label="See All" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/photos" label="Photos" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/focus" label="Focus" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
-                    </ol>
-                    <ol>
-                        <li>Account</li>
-                        <li><BoxFill label="Profile" type="nofill" className="type4 invalid" /></li>
-                        <li><BoxFill label="Language" type="nofill" className="type4 invalid" /></li>
-                        <li><BoxFill label="Country" type="nofill" className="type4 invalid" /></li>
+                        <li><Button shape="box" color="nofill" href="/project" label="See All" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/project/photos" label="Photos" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/project/focus" label="Focus" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
+                        <li><Button shape="box" color="nofill" href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
                     </ol>
                 </div>
             </div>
             <div className="bottom">
-                <BoxFill href="#" label="sign out" type="fill" />
             </div>
         </div>
     );
