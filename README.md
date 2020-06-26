@@ -2,7 +2,7 @@
 This project is completely managed by Jack as a way to reimagine his personal branding.
 
 ## Estimated Completion
-The website is scheduled to be live at https://www.byjackli.com by May 30th, 2020 at 24:59.
+The website is scheduled to be live at https://www.byjackli.com by May 30th, 2020 at 23:59.
 
 ## Purpose of Project
 The motives behind this are as follow:
