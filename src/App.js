@@ -18,18 +18,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opacity: 0,
-    }
-  }
-
-  componentDidMount() {
-    if (window.location.pathname === "/") { window.addEventListener("scroll", this.updateHeight.bind(this)); }
-    if (window.innerHeight < window.scrollY) { this.setState({ opacity: 1 }); }
-  }
-  updateHeight() {
-    if (window.scrollY < window.innerHeight - 100) {
-      // this.setState({ opacity: 1 - (window.innerHeight - 400 - window.scrollY) / (window.innerHeight - 400) });
-      this.setState({ opacity: 1 - (window.innerHeight - window.scrollY - 200) / (300) });
     }
   }
 
@@ -38,12 +26,12 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Navbar style={{ opacity: this.state.opacity }} />
+          <Navbar />
           <Switch>
             <Route path={["/", "/resume"]} exact component={Resume} />
             <Route path="/about" exact component={About} />
-            <Route path={["/project", "/projects"]} exact component={Project} />
-            <Route path="/project/:id" component={Project} />
+            <Route path="/projects" exact component={Project} />
+            <Route path="/project/:id" strict component={Project} />
             <Route path="/signin" exact component={Signin} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/styleguide" exact component={Styleguide} />

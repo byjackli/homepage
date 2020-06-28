@@ -27,6 +27,7 @@
   --LightL: #F2F2F2;   /* Paper White byjackli - Suitable for any text and backgrounds. This is the default 'light-mode' color. */
   --LightM: #FFFFFF;   /* Clean White byjackli - Suitable for card and block backgrounds. */
   --LightS: #FFFFFFBF; /* Clean White byjackli - Suitable for overlays */
+  --LightXS: #ffffffe0; /* Clean White byjackli - Suitable for overlays */
 
   /* scale */
   --navheight: 107px;
@@ -46,9 +47,7 @@ html, body, #root, .App {
   max-width: 100%;
   height: 100vh;
   background-color: var(--LightL);
-}
-.App{
-  /* overflow: hidden; */
+  scroll-behavior: smooth;
 }
 
 * {
@@ -62,6 +61,12 @@ html, body, #root, .App {
   color: var(--DarkL);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+hr {  
+  width: 100%;
+  border-top: .25em solid var(--DarkL);
+  margin: 10px 0 35px 0px;
 }
 
 code {
@@ -80,9 +85,11 @@ main {
 section {
   width: var(--width);
   max-width: 100%;
-  z-index: 1;
+  padding: 50px;
+  padding-top: calc(var(--navheight) + 50px);
   background-color: var(--LightL);
   overflow: hidden;
+  z-index: 1;
 }
 
 .pagecover {
@@ -123,12 +130,12 @@ h2, .style2 { font-size: 2.75rem; }
 h3, .style3 { font-size: 2rem; }
 h4, .style4 { font-size: 1.25rem; }
 h5, .style5 { font-size: 1rem; }
-.style-mega { font-size: 8rem; }
+.style-mega { font-size: 8rem; padding: 0; }
 .pageheader {
   width: 100%;
   height: 10em;
-  margin-bottom: 2em;
-  padding: 1em 10em 0 10em;
+  margin: auto;
+  padding: 1em 0;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -158,7 +165,7 @@ strong { font-weight: 600; }
 
 
 /* positioning */
-.vrtCC, .vrtTL, .vrtTC, .vrtBT, .vrtEV, .vrtCL, .hrzCC, .hrzCR, .hrzTL, .hrzTR, .hrzTC, .hrzBT, .hrzEV {
+.vrtCC, .vrtTL, .vrtTR, .vrtTC, .vrtBT, .vrtEV, .vrtCL, .hrzCC, .hrzCR, .hrzTL, .hrzTR, .hrzTC, .hrzBT, .hrzEV {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -169,12 +176,13 @@ strong { font-weight: 600; }
   align-items: center;
 }
 
-.vrtTC, .hrzCR { align-items: center;}
+.vrtTC, .hrzCR { align-items: center; }
+.vrtTR { align-items: flex-end; }
 .hrzCC, .hrzCR, .hrzTL, .hrzTR, .hrzTC, .hrzBT, .hrzEV { flex-direction: row; }
 .hrzCR, .hrzTR { justify-content: flex-end; }
 .vrtCL, .hrzTC { justify-content: center; }
 .hrzBT, .vrtBT { justify-content: space-between; }
-.hrzEV, .vrtEV { justify-content: space-evenly;}
+.hrzEV, .vrtEV { justify-content: space-evenly; }
 
 /* scrollbar */
 *::-webkit-scrollbar {
@@ -205,10 +213,28 @@ strong { font-weight: 600; }
 
 /* ========= 03 COMPONENTS ========= */
 /* --- 03a Buttons and Links --- */
+button { 
+  width: 3em;
+  border: none; 
+  outline: none; 
+  cursor: pointer;
+  transition: all var(--out);
+}
+button:hover {
+  transition: all var(--in);
+  transform: scale(1.1);
+}
+button:active i {
+  transition: all var(--in);
+  transform: scale(0);
+}
+nav button i { color: var(--BrandL); }
+
 .button-root { display: inline-block; }
 /* Box Button */
-.button-box-fill, .button-pill-fill, 
-.button-box-nofill, .button-pill-nofill,
+.button-box-fill, .button-box-nofill,
+.button-pill-fill, .button-pill-nofill,
+.button-round-fill, .button-round-nofill,
 input[type="submit"] {
   width: fit-content;
   border: 2px solid var(--BrandL);
@@ -224,28 +250,47 @@ input[type="submit"] {
 
   transition: all var(--out);
 }
-.button-box-fill:hover, .button-pill-fill:hover, 
-.button-box-fill:focus, .button-pill-fill:focus,
-.button-box-nofill:hover, .button-pill-nofill:hover, 
-.button-box-nofill:focus, .button-pill-nofill:focus,
-.menubar .active  {
+/* Hover & Focus animation */
+.button-box-fill:hover, .button-box-fill:focus,
+.button-pill-fill:hover, .button-pill-fill:focus,
+.button-round-fill:hover, .button-round-fill:focus,
+.button-box-nofill:hover, .button-box-nofill:focus,
+.button-pill-nofill:hover, .button-pill-nofill:focus,
+.button-round-nofill:hover, .button-round-nofill:focus,
+nav .active {
   outline: none;
   color: var(--BrandL);
   background-color: var(--LightL);
   transition: all var(--in);
 }
+/* Active (on-click) animation */
+.button-box-fill:active, .button-box-nofill:active,
+.button-pill-fill:active, .button-pill-nofill:active,
+.button-round-fill:active, .button-round-nofill:active,
+nav .active {
+  box-shadow: 0 0 12px var(--DarkS);
+  transform: scale(1.05);
+}
 /* Pill Button */
-.button-pill-fill {
+.button-pill-fill, .button-pill-nofill {
   border-radius: 99px;
 }
-/* Box and Pill Buttons - nofill variant */
-.button-box-nofill, .button-pill-nofill {
+/* Round Button */
+.button-round-fill, .button-round-nofill {
+  border-radius: 10px;
+}
+/* Buttons - nofill variant */
+.button-box-nofill, 
+.button-pill-nofill,
+.button-round-nofill {
   background-color: var(--LightL);
   border-color: var(--LightL);
   color: var(--BrandL);
 }
-.button-box-nofill:hover, .button-pill-nofill:hover, 
-.button-box-nofill:focus, .button-pill-nofill:focus {
+.button-box-nofill:hover, .button-box-nofill:focus, 
+.button-pill-nofill:hover, .button-pill-nofill:focus,
+.button-round-nofill:hover, .button-round-nofill:focus,
+nav .active div {
   background-color: var(--BrandL);
   color: var(--LightL);
 }
@@ -460,7 +505,9 @@ nav a {
   text-decoration: none;
   transition: all var(--out);
 }
-.navlink { height: 100%; }
+.navlink { 
+  height: 100%; 
+}
 nav a * { color: var(--BrandL); }
 nav .left { 
   flex: inherit;
@@ -525,12 +572,13 @@ input[type='search']:focus {
 /* Menu bar */
 .App>div.menubar, .menubar {
   width: 300px;
-  height: calc(100vh - var(--navheight));
+  height: 100vh;
+  padding-top: var(--navheight);
   bottom: 0;
   position: fixed;
   background-color: var(--LightL);
   justify-content: space-between;
-  z-index: 99;
+  z-index: 98;
 }
 .menubar * { width: 100%;  text-align: left; }
 .menubar .button-box-fill { width: 100%; }
@@ -557,6 +605,7 @@ footer.hrzTL {
   padding: 45px;
   justify-content: space-between;
   overflow: hidden;
+  z-index: 1;
 }
 footer * {
   color: var(--LightL);
@@ -567,7 +616,7 @@ footer ol { padding-left: 100px; }
 .App>div.modalbg {
   width: var(--width);
   max-width: 100%;
-  height: calc(100vh - var(--navheight));
+  height: 100vh;
   bottom: 0;
   position: fixed;
   background-color: var(--DarkM);
@@ -590,6 +639,7 @@ section.splash {
 }
 section.resume {
   padding: 75px;
+  padding-top: calc(75px + var(--navheight));
 }
 section.resume>div {
   padding-bottom: 3%;
@@ -618,7 +668,6 @@ main.about .right>.card{
 /* ========= 06 PROJECT ========= */
 main.project {
   padding: 0;
-  padding-top: var(--navheight);
 }
 main.project section { 
   min-height: 100vh;
@@ -628,23 +677,104 @@ main.project section {
 
   z-index: 1;
 }
-main.project section>* {
-  padding: .05em;
-}
-main.project section.details>div {
-  width: 100%;
-  height: 100%;
-}
-main.project ol:not(:first-of-type) { width: 35%; }
 main.project .links li { padding: .5em;}
+main.project .project-all { padding-top: var(--navheight); }
+
+/* Project Navigation Panel */
 main.project .gallery {
-  width: 75%;
+  width: 100%;
+  height: calc(100vh - 216px - var(--navheight));
   display: flex;
   flex-wrap: wrap;
 }
-main.project .gallery .card { 
-  width: 30%; 
-  margin: 1%;
+main.project .gallery-list {
+  width: 30%;
+  height: 100%;
+  padding: 25px 0;
+  overflow-y: auto;
+}
+main.project .gallery-list .card {
+  cursor: pointer;
+}
+main.project .gallery-overview {
+  width: 70%;
+  height: 100%;
+  padding: 25px 50px;
+  overflow-y: auto;
+  border-left: solid 5px var(--LightM);
+}
+main.project .gallery-overview ol, #overview ol {
+  padding-bottom: 35px;
+}
+main.project .gallery .card {  
+  width: 80%;
+  margin: 5% auto;
+}
+.project-details {
+  width: calc(100% - 80px);
+  padding: 75px;
+  align-self: flex-start;
+}
+.project-details>* {
+  padding: 0 8px;
+}
+.project-details>*:nth-child(2) {
+  padding: 0;
+}
+.project-details>*:nth-child(3) {
+  padding: 75px 8px;
+  width: 50%;
+}
+.project-details>*:nth-child(4)>a {
+  padding-right: 15px;
+}
+.project-details-extended { padding: 50px 100px; padding-top: calc(var(--navheight) + 50px); }
+.project-details-extended div { flex-wrap: wrap; }
+.project-details-extended ol { padding: 50px; }
+
+/* Project Navigation Panel */
+.project-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+
+  z-index: 96;
+}
+.project-nav-button {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.project-nav>a {
+  width: fit-content;
+  height: fit-content;
+  margin: 1em;
+  opacity: 1;
+  transition: all var(--out);
+}
+.project-nav>a:hover .project-nav-label {
+  right: 120%;
+  top: -5%;
+  opacity: 1;
+}
+.project-nav-label {
+  width: fit-content;
+  right: -350%;
+  top: -5%;
+  position: absolute;
+  background-color: var(--BrandL);
+  padding: .5em;
+
+  opacity: 0;
+
+  text-align: right;
+  text-transform: uppercase;
+  color: var(--LightL);
+  transition: all var(--in);
 }
 
 
@@ -693,7 +823,7 @@ main.project .gallery .card {
   position: absolute;
   top: 90%;
   font-size: 2em;
-  text-shadow: 0px 2px 4px var(--LightM);
+  text-shadow: 0px 1px 4px var(--LightM);
   writing-mode: vertical-lr;
   text-orientation: mixed;
 }

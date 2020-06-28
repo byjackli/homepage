@@ -12,29 +12,51 @@ class Resume extends Component {
         this.state = {
             courses: null,
             user_courses: null,
-            resume: false
+            agendas: null,
+            projects: null,
+            resume: true
         }
     }
     componentDidMount() {
-        this.getCourses();
-        this.setState({ resume: true })
+        this.getData();
     };
 
-    getCourses() {
+    getData() {
         const db = firebase.firestore();
+        // get courses
         db.collection('courses').get().then(snapshotCourses => {
             let allCourses = new Map();
             snapshotCourses.docs.forEach(doc => {
                 allCourses.set(doc.id, doc.data());
             })
 
-            db.collection('users-courses').orderBy('year', 'desc').orderBy('term').orderBy('course').get().then(snapshotUserCourses => {
-                this.setState({
-                    user_courses: snapshotUserCourses.docs,
-                    courses: allCourses
+            // get agendas
+            db.collection('agendas').orderBy('date').orderBy('name').orderBy('status').get().then(snapshotAgendas => {
+
+                // get user courses
+                db.collection('users-courses').orderBy('year', 'desc').orderBy('term').orderBy('course').get().then(snapshotUserCourses => {
+
+                    // get projects
+                    db.collection('projects').orderBy('start-date', 'desc').orderBy('name').orderBy('status').get().then(snapshotProjects => {
+                        this.setState({
+                            agendas: snapshotAgendas.docs,
+                            user_courses: snapshotUserCourses.docs,
+                            projects: snapshotProjects.docs,
+                            courses: allCourses
+                        });
+                    });
                 });
             });
         });
+    }
+
+    renderDate(data) {
+        let
+            date = new Date(data * 1000),
+            months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
+
+        console.log("the date", data);
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
     }
 
     renderCards(cards, cb) {
@@ -54,15 +76,7 @@ class Resume extends Component {
         return (
             <>{
                 slots.map(doc => (
-                    <Slot
-                        key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
-                        href={this.state.courses.get(doc.data().course).link}
-                        content={[
-                            <p>{doc.data().year} {doc.data().term}</p>,
-                            <p>{doc.data().course} {this.state.courses.get(doc.data().course).name}</p>,
-                            <p>COMPLETED</p>
-                        ]}
-                    />
+                    cb(doc)
                 ))
             }</>
         )
@@ -109,7 +123,7 @@ class Resume extends Component {
                         <div>
                             <div className="hrzTL">
                                 <ol>
-                                    <li><i className="fas fa-map-marker-alt"></i> Currently home. New York, NY</li>
+                                    <li><i className="fas fa-map-marker-alt"></i> Quarantined Home</li>
                                     <li><i className="fas fa-home"></i> New York, NY</li>
                                     <li><i className="fas fa-graduation-cap"></i> Buffalo, NY</li>
                                 </ol>
@@ -175,33 +189,30 @@ class Resume extends Component {
                 </div>
 
                 <div className="hrzBT">
-                    <Card className="card" header="All Current Agendas" elements={
+                    <Card className="card" header="Agendas" elements={
                         <div>
                             <p>On-going projects, tasks, and more.</p>
                             <p>Updated every Sunday morning, 5am EDT.</p>
+                            <Slot content={[
+                                <p className="style5">Date</p>,
+                                <p className="style5">Agenda</p>,
+                                <p className="style5">Status</p>
+                            ]} />
                             <div className="card-vrt">
-                                <Slot content={[
-                                    <p>May 17, 2020</p>,
-                                    <p>byjackli personal project</p>,
-                                    <p>STABLE RELEASE</p>
-                                ]} />
-                                <Slot content={[
-                                    <p>June 6, 2020</p>,
-                                    <p>lyrics.byjackli project</p>,
-                                    <p>STABLE RELEASE</p>
-                                ]}
-                                    href="/project/lyrics" />
-                                <Slot content={[
-                                    <p>June 6, 2020</p>,
-                                    <p>Internet Security Course</p>,
-                                    <p>ON HOLD</p>
-                                ]}
-                                    href="https://www.udemy.com/course/du-internet-security/" />
-                                <Slot line1="June" line2="20" header="photos.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/60487159_410125876380768_2939073432189000809_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=100&_nc_ohc=hqTFIMTXtFQAX_Ss3Ra&oh=feb37d45b02de0f3570377beccc09ec7&oe=5EFB39FD" />
-                                <Slot line1="June" line2="22" header="Blender 3D Modelling Course" tags={["motivation", "exploration", "purpose"]} href="https://www.youtube.com/playlist?list=PLjEaoINr3zgEq0u2MzVgAaHEBt--xLB6U" image="https://i.ytimg.com/vi/TPrnSACiTJ4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBqaXGYiz5GZIERze_tlHPfuEW-4A" />
-                                <Slot line1="June" line2="27" header="playlists.byjackli project" image="https://i.scdn.co/image/ab67706c0000da846cef7879d0c41b96614fb96b" />
-                                <Slot line1="July" line2="4" header="travel.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/75580624_427744227893450_3281423545455613562_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=102&_nc_ohc=PjXSADk7eQ4AX83_4iL&oh=0ce8456211365588cc581aab423e6ff5&oe=5EFC228E" />
-                                <Slot line1="July" line2="26" header="focus.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/47255082_261545637871712_6298646750211080192_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=108&_nc_ohc=Re9L1VgBS-wAX-FC5tw&oh=c0cdaf3bb9ae06c162648f430124e3c5&oe=5EF9485E" />
+
+                                {this.state.agendas ? this.renderSlots(this.state.agendas, (doc) => {
+                                    return (
+                                        <Slot
+                                            key={`${doc.data().name}${doc.data().date.toString()}`}
+                                            href={doc.data().href}
+                                            content={[
+                                                <p>{this.renderDate(doc.data().date.seconds)}</p>,
+                                                <p>{doc.data().name}</p>,
+                                                <p>{doc.data().status}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading agenda ...</p>}
                             </div>
                         </div>
                     } />
@@ -209,19 +220,52 @@ class Resume extends Component {
                         <div>
                             <p>University at Buffalo - Expected May 2021.</p>
                             <p>Computer Science Major, Communications Minor</p>
+                            <Slot content={[
+                                <p className="style5">Term</p>,
+                                <p className="style5">Course</p>,
+                                <p className="style5">Status</p>
+                            ]} />
                             <div className="card-vrt">
-                                {this.state.user_courses ? this.renderSlots(this.state.user_courses) : <p>loading courses ...</p>}
+                                {this.state.user_courses ? this.renderSlots(this.state.user_courses, (doc) => {
+                                    return (
+                                        <Slot
+                                            key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
+                                            href={this.state.courses.get(doc.data().course).link}
+                                            content={[
+                                                <p>{doc.data().year} {doc.data().term}</p>,
+                                                <p>{doc.data().course} {this.state.courses.get(doc.data().course).name}</p>,
+                                                <p>{doc.data().status}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading courses ...</p>}
                             </div>
                         </div>
                     } />
                     <Card className="card" header="Projects" elements={
                         <div>
-                            <p>Only past computer science projects and academic assignments listed in this section.</p>
+                            <p>All computer science projects and academic assignments.</p>
+                            <p>More academic assignments to be added.</p>
+                            <Slot content={[
+                                <p className="style5">Date</p>,
+                                <p className="style5">Project</p>,
+                                <p className="style5">Status</p>
+                            ]} />
                             <div className="card-vrt">
-                                <Slot href="http://webdev.cse.buffalo.edu/cse410/gr8/app/#/login" line1="Spring" line2="2020" header="TOPIX: Collaborative Learning" />
-                                <Slot href="https://www.ubphotoclub.org" line1="June" line2="2018" header="UB Photo Club" />
-                                <Slot href="https://github.com/jackli1337/project-delta" line1="November" line2="2018" header="UB Hackathon" />
-                                <Slot href="https://www.hsdlas.org" line1="June" line2="2014" header="High School for Dual Language and Asian Studies" />
+                                {this.state.projects ? this.renderSlots(this.state.projects, (doc) => {
+                                    console.info(doc.data())
+                                    return (
+                                        <Slot
+                                            key={`${doc.data().name}${doc.data()["start-date"].toString()}`}
+                                            href={doc.data().href}
+                                            content={[
+                                                <p>{this.renderDate(doc.data()["start-date"].seconds)}</p>,
+                                                <p>{doc.data().name}</p>,
+                                                <p>{doc.data().status.code}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading projects ...</p>}
                             </div>
                         </div>
                     } />

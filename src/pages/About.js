@@ -22,30 +22,13 @@ class About extends Component {
                         </ol>
                     </div>
                     <div className="middle">
-                        <section>
-                            <p>
-                                Jack Li is a Computer Science and Communications student at <Intext href="http://engineering.buffalo.edu/" label="University at Buffalo's School of Engineering and Applied Sciences" />,
-                                media marketing director at <Intext href="https://www.sa.buffalo.edu/" label="University at Buffalo Student Association" />, and founder at <Intext href="https://www.ubphotoclub.org/" label="UB Photo Club" />.
-                                He began web developing in New York City during the early-2010's, and attained transformative knowledge during the late-2010's at University at Buffalo. He
-                                is know for his creative eye for photography and front-end web development. He is sometimes regarded as the "wizard" of photography and web development.
-                            </p>
-                        </section>
-                        <section>
-                            <h2>Early Life</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Career</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Personal Life</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Influences</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
+                        <p>
+                            Jack Li is a Computer Science and Communications student at <Intext href="http://engineering.buffalo.edu/" label="University at Buffalo's School of Engineering and Applied Sciences" />,
+                            media marketing director at <Intext href="https://www.sa.buffalo.edu/" label="University at Buffalo Student Association" />, and founder at <Intext href="https://www.ubphotoclub.org/" label="UB Photo Club" />.
+
+                            He began web developing in New York City during the early-2010's, and attained transformative knowledge during the late-2010's at University at Buffalo. He
+                            is know for his creative eye for photography and front-end web development. He is sometimes regarded as the "wizard" of photography and web development.
+                        </p>
                     </div>
                     <div className="right">
                         <Card className="card" header="Contact" elements={

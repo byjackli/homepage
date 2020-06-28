@@ -1,16 +1,43 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Searchbar } from './Search';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from './Clicks';
 
 
 // Navigation bar, use this on hompage
-export class Navbar extends Component {
+export class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            menu: false
+            menu: false,
+            opacity: 1,
+        }
+    }
+
+    componentDidMount() {
+        this.scrollHandler(window.location.pathname);
+        if (window.location.pathname === "/project") { window.location.pathname = "/projects"; }
+    }
+
+    scrollHandler(data, event) {
+        console.info("add", window.scrollY)
+
+        if (data === "/" || window.location.href.includes("project/")) {
+            if (window.innerHeight < window.scrollY) { this.setState({ opacity: 1 }); }
+            else { this.setState({ opacity: 0 }); }
+
+            window.addEventListener("scroll", this.updateHeight.bind(this));
+        }
+
+        else {
+            console.info("this is an else", data)
+            this.setState({ opacity: 1 });
+        }
+    }
+
+    updateHeight(data) {
+        if ((window.location.pathname === "/" || window.location.href.includes("project/")) && window.scrollY < window.innerHeight - 100) {
+            this.setState({ opacity: 1 - (window.innerHeight - window.scrollY - 200) / (300) });
         }
     }
 
@@ -21,16 +48,20 @@ export class Navbar extends Component {
     render() {
         return (
             <>
-                <nav {...this.props}>
+                <nav style={{ opacity: this.state.opacity }} {...this.props}>
                     <div className="top">
                         <div className="left">
-                            <Link to="#" aria-label="Menu" onClick={this.toggleMenu.bind(this)}><i className="style3 fas fa-bars"></i></Link>
-                            <Link className="style3" to="/">byjackli</Link>
+                            <button className="dragoff" aria-label="Menu" onClick={this.toggleMenu.bind(this)}>{
+                                this.state.menu
+                                    ? <i className="style3 fas fa-times"></i>
+                                    : <i className="style3 fas fa-bars"></i>
+                            }</button>
+                            <a className="style3 dragoff" onClick={this.scrollHandler.bind(this, "/")} href="/">byjackli</a>
                         </div>
                         <div>
-                            <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
-                            <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
-                            <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/resume")} href="/resume"><div className="button-box-nofill">Resume</div></a>
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/about")} href="/about"><div className="button-box-nofill">About</div></a>
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/projects")} href="/projects"><div className="button-box-nofill">Projects</div></a>
                         </div>
                     </div>
                     <div className="bottom">
