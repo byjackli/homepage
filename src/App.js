@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import firebase from './config/firebase';
 
 import './styles/App.css';
-// import './styles/Queries.css';
+import './styles/Queries.css';
 import { Navbar, Footer } from './components/Navigation';
 import Resume from './pages/Resume';
 import About from './pages/About';
@@ -11,7 +10,7 @@ import Project from './pages/Project';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Styleguide from './pages/Styleguide';
-import { render } from '@testing-library/react';
+import Error from './pages/Error';
 
 class App extends React.Component {
 
@@ -35,6 +34,7 @@ class App extends React.Component {
             <Route path="/signin" exact component={Signin} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/styleguide" exact component={Styleguide} />
+            <Route path="*" component={Error} />
           </Switch>
           <Footer />
         </div>

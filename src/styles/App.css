@@ -79,12 +79,11 @@ main {
   max-width: 100%;
   min-height: 100vh;
   height: fit-content;
-  padding: 50px 75px;
-  padding-top: calc(50px + var(--navheight));
 }
 section {
   width: var(--width);
   max-width: 100%;
+  min-height: 100vh;
   padding: 50px;
   padding-top: calc(var(--navheight) + 50px);
   background-color: var(--LightL);
@@ -187,6 +186,7 @@ strong { font-weight: 600; }
 /* scrollbar */
 *::-webkit-scrollbar {
   width: .5rem;
+  height: .5rem;
   border-radius: 15px;
 } 
 *::-webkit-scrollbar-track {
@@ -382,6 +382,7 @@ ol {
   height: 100%;
   padding-top: 25px;
 }
+.card p, .card>div>* { padding-bottom: .5rem; }
 .card ol { padding-right: 50px; }
 .card ol li { display: flex; }
 .card ol:last-of-type { padding-right: 0; }
@@ -430,11 +431,14 @@ ol {
   width: 30%;
 }
 .slot-content>p:nth-of-type(1){
-  width: 20%;
+  width: 25%;
 }
 .slot-content>p:nth-of-type(2){
-  width: 40%;
+  width: 50%;
   font-weight: 600;
+}
+.slot-content>p:nth-of-type(3){
+  width: 25%;
 }
 .slot .hrzTL:first-of-type { margin-bottom: 10px;}
 
@@ -582,7 +586,7 @@ input[type='search']:focus {
 }
 .menubar * { width: 100%;  text-align: left; }
 .menubar .button-box-fill { width: 100%; }
-.menubar .top { height: calc(100% - 84px); }
+.menubar .top { height: 100%; }
 .menubar .categories { 
   height: 100%;
   overflow-y: hidden;
@@ -607,9 +611,7 @@ footer.hrzTL {
   overflow: hidden;
   z-index: 1;
 }
-footer * {
-  color: var(--LightL);
-}
+footer * { color: var(--LightL); }
 footer p { padding-top: 15px; width: 250px;}
 footer ol { padding-left: 100px; }
 /* Modals */
@@ -627,9 +629,7 @@ footer ol { padding-left: 100px; }
 
 
 /* ========= 04 RESUME ========= */
-main.resume {
-  padding: 0px;
-}
+main.resume { padding: 0px; }
 section.splash { 
   min-height: 100vh;
   height: 100vh;
@@ -641,12 +641,14 @@ section.resume {
   padding: 75px;
   padding-top: calc(75px + var(--navheight));
 }
-section.resume>div {
-  padding-bottom: 3%;
+section.resume>div { padding-bottom: 3%; }
+section.resume .card { width: 32%; }
+.bucketlist ol { padding-bottom: 15px; }
+.xplist ol {
+  padding-bottom: 25px;
+  width: 100%;
 }
-section.resume .card {
-  width: 32%;
-}
+.cards-3 { flex-wrap: wrap; }
 
 
 
@@ -654,14 +656,26 @@ section.resume .card {
 main.about section { margin-bottom: 5em; }
 main.about .pageheader { background-image: linear-gradient(0deg, #FFFFFFBF, #FFFFFFBF), url(https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/64885910_467086900782843_2126031318545374196_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=HR0fCo4yBvsAX_ZJfca&oh=9699601bf1da4f1b4dc6732c83fcb9da&oe=5EFD5B02)}
 main.about .left { width: 10%; }
-main.about .right { width: 20%; }
+main.about .right { width: 40%; }
 main.about .middle { 
-  width: 60%; 
-  margin: 0 5% 
+  width: 50%;
+  margin-right: 10%
 }
-main.about .right>.card{
-  margin-bottom: 2em;
-}
+main.about .right>.card{ margin-bottom: 2em; }
+.about section { 
+  padding-left: 0;
+  padding-right: 0;
+ }
+ .about section>div {
+   padding: 50px;
+   padding-bottom: 3%;
+ }
+ .about section>div:last-of-type { 
+  padding-top: 0;
+ }
+ main.about .card {
+   width: 32%;
+ }
 
 
 
@@ -670,7 +684,6 @@ main.project {
   padding: 0;
 }
 main.project section { 
-  min-height: 100vh;
   height: fit-content;
   overflow: hidden;
   background-color: var(--LightL);
@@ -711,7 +724,7 @@ main.project .gallery .card {
   margin: 5% auto;
 }
 .project-details {
-  width: calc(100% - 80px);
+  width: calc(100vw - 80px);
   padding: 75px;
   align-self: flex-start;
 }

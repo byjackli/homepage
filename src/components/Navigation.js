@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Clicks';
+import Logo from '../images/logo.png';
 
 
 // Navigation bar, use this on hompage
@@ -57,6 +58,7 @@ export class Navbar extends React.Component {
                                     : <i className="style3 fas fa-bars"></i>
                             }</button>
                             <a className="style3 dragoff" onClick={this.scrollHandler.bind(this, "/")} href="/">byjackli</a>
+
                         </div>
                         <div>
                             <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/resume")} href="/resume"><div className="button-box-nofill">Resume</div></a>
@@ -108,24 +110,25 @@ export function Menubar(props) {
     }
 
     return (
-        <div className="menubar vrtTL">
+        <div aria-haspopup="menu" role="menu" className="menubar vrtTL">
             <div className="top">
                 <div className="categories">
                     <p>Greetings and Good {greetings()}!</p>
-                    <ol>
+                    <ol role="group" aria-label="pages">
                         <li>Jack</li>
-                        <li><Button shape="box" color="nofill" href="/resume" label="Resume" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/about" label="About" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/about" label="Contact" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/resume" label="Resume" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/about" label="About" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/projects" label="Projects" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/about" label="Contact" type="nofill" className="type4" /></li>
                     </ol>
-                    <ol>
+                    <ol role="group" aria-label="projects">
                         <li>Projects</li>
-                        <li><Button shape="box" color="nofill" href="/project" label="See All" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/project/photos" label="Photos" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/project/focus" label="Focus" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
-                        <li><Button shape="box" color="nofill" href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/projects" label="See All" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/pages" label="Pages" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/topix" label="Topix" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
                     </ol>
                 </div>
             </div>
@@ -142,7 +145,7 @@ export function Footer(props) {
         <footer className="hrzTL">
             <div className="left">
                 <Link className="style3" to="/">byjackli</Link>
-                <p>if you can't make sacrifices, then you need a new goal</p>
+                <p>DARE TO IMAGINE.</p>
             </div>
             <div className="hrzTL">
 
@@ -161,10 +164,10 @@ export function Footer(props) {
                 </ol>
                 <ol>
                     <li className="style5">Other projects</li>
-                    <li><a href="/project/travel">Travel - help travelers make decisions</a></li>
-                    <li><a href="/project/photos">Photos - immersive instagram experience</a></li>
-                    <li><a href="/project/focus">Focus - chrome extensions to improve focus</a></li>
                     <li><a href="/project/lyrics">Lyrics - music and lyrics side-by-side</a></li>
+                    <li><a href="/project/pages">Pages - simple website builder</a></li>
+                    <li><a href="/project/focus">Topix - academic sharing platform</a></li>
+                    <li><a href="/project/travel">Travel - help travelers make decisions</a></li>
                     <li><a href="/project/playlists">Playlists - share your spotify playlists</a></li>
                 </ol>
             </div>

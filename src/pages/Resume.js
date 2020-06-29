@@ -3,7 +3,6 @@ import firebase from '../config/firebase';
 import { Card, Slot } from '../components/Nodes';
 import { Intext } from '../components/Clicks';
 import Logo from '../images/logo.png';
-import Tallboy from '../images/tallboy.jpg';
 import Wideboy from '../images/wideboy.jpg';
 
 class Resume extends Component {
@@ -84,7 +83,7 @@ class Resume extends Component {
     renderResume() {
         return (
             <section className="resume">
-                <div className="hrzBT">
+                <div className="cards-3 hrzBT">
                     <Card className="card" header="Contact" elements={
                         <div>
                             <div className="hrzTL">
@@ -135,9 +134,8 @@ class Resume extends Component {
                 <div className="hrzBT">
                     <Card className="card" header="Expertises" elements={
                         <div>
-                            <p>Imposter Syndrome is a psychological pattern in which one doubts one's accomplishments and has a persistent internalized fear of being exposed as a "fraud".</p>
-                            <p><Intext href="https://paulineroseclance.com/pdf/-Langford.pdf" label="[source]" /></p>
-                            <div className="hrzTL">
+                            <p>Imposter Syndrome is a psychological pattern in which one doubts one's accomplishments and has a persistent internalized fear of being exposed as a "fraud". <Intext href="https://paulineroseclance.com/pdf/-Langford.pdf" label="[source]" /></p>
+                            <div className="hrzTL bucketlist">
                                 <ol>
                                     <li><h4>Programming</h4></li>
                                     <li>- programming languages</li>
@@ -188,7 +186,7 @@ class Resume extends Component {
                     />
                 </div>
 
-                <div className="hrzBT">
+                <div className="cards-3 hrzBT">
                     <Card className="card" header="Agendas" elements={
                         <div>
                             <p>On-going projects, tasks, and more.</p>
@@ -198,11 +196,12 @@ class Resume extends Component {
                                 <p className="style5">Agenda</p>,
                                 <p className="style5">Status</p>
                             ]} />
-                            <div className="card-vrt">
+                            <div role="list" className="card-vrt">
 
                                 {this.state.agendas ? this.renderSlots(this.state.agendas, (doc) => {
                                     return (
                                         <Slot
+                                            role="listitem"
                                             key={`${doc.data().name}${doc.data().date.toString()}`}
                                             href={doc.data().href}
                                             content={[
@@ -218,17 +217,18 @@ class Resume extends Component {
                     } />
                     <Card className="card" header="Education" elements={
                         <div>
-                            <p>University at Buffalo - Expected May 2021.</p>
+                            <p>University at Buffalo - Expected Feb 1, 2021.</p>
                             <p>Computer Science Major, Communications Minor</p>
                             <Slot content={[
                                 <p className="style5">Term</p>,
                                 <p className="style5">Course</p>,
                                 <p className="style5">Status</p>
                             ]} />
-                            <div className="card-vrt">
+                            <div role="list" className="card-vrt">
                                 {this.state.user_courses ? this.renderSlots(this.state.user_courses, (doc) => {
                                     return (
                                         <Slot
+                                            role="listitem"
                                             key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
                                             href={this.state.courses.get(doc.data().course).link}
                                             content={[
@@ -251,13 +251,14 @@ class Resume extends Component {
                                 <p className="style5">Project</p>,
                                 <p className="style5">Status</p>
                             ]} />
-                            <div className="card-vrt">
+                            <div role="list" className="card-vrt">
                                 {this.state.projects ? this.renderSlots(this.state.projects, (doc) => {
                                     console.info(doc.data())
                                     return (
                                         <Slot
+                                            role="listitem"
                                             key={`${doc.data().name}${doc.data()["start-date"].toString()}`}
-                                            href={doc.data().href}
+                                            href={`/project/${doc.data().name}`}
                                             content={[
                                                 <p>{this.renderDate(doc.data()["start-date"].seconds)}</p>,
                                                 <p>{doc.data().name}</p>,
@@ -269,6 +270,57 @@ class Resume extends Component {
                             </div>
                         </div>
                     } />
+                </div>
+
+                <div className="hrzBT">
+                    <Card className="card" header="Experience" elements={
+                        <div>
+                            <div className="hrzTL xplist">
+                                <ol>
+                                    <li><h4>Director of Media and Marketing&nbsp;</h4> Aug 2019 - May 2020</li>
+                                    <li><em><Intext href="https://www.sa.buffalo.edu/" label="Undergraduate Student Association - University at Buffalo" /></em></li>
+                                    <li>- Oversaw 4 teams (Graphics, Photo, Video, Outreach), a total of over 16 active members</li>
+                                    <li>- Quality check all anything the public sees with an official Student Association logo (ie merchandise, media)</li>
+                                    <li>- Attend weekly director meetings, coordinate with other directors</li>
+                                    <li>- Interacted with over 150 clubs and 21,000 undergraduate students</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Co-Founder, Secretary, President, Senior Advisor&nbsp;</h4> Sep 2017 - May 2020</li>
+                                    <li><em><Intext href="https://www.ubphotoclub.org/" label="UB Photo Club" /></em></li>
+                                    <li>- Oversaw club brand management (ie brand identity, logo, graphics, templates)</li>
+                                    <li>- Modernized web presence (ie coded website, added LinkedIn page)</li>
+                                    <li>- Oversaw training and organization (ie trained recruits, shared personal resources)</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
+                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
+                                    <li>- Represented Amazon Prime Students and HBO</li>
+                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
+                                    <li>- Created interactive social media engagements</li>
+                                    <li>- Assisted students with registration process</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
+                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
+                                    <li>- Represented Amazon Prime Students and HBO</li>
+                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
+                                    <li>- Created interactive social media engagements</li>
+                                    <li>- Assisted students with registration process</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
+                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
+                                    <li>- Represented Amazon Prime Students and HBO</li>
+                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
+                                    <li>- Created interactive social media engagements</li>
+                                    <li>- Assisted students with registration process</li>
+                                </ol>
+                                <ol></ol>
+                            </div>
+                        </div>
+                    }
+                        style={{ width: "100%" }}
+                    />
                 </div>
             </section>
         )
