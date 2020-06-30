@@ -219,6 +219,7 @@ button {
   outline: none; 
   cursor: pointer;
   transition: all var(--out);
+  background-color: transparent;
 }
 button:hover {
   transition: all var(--in);
