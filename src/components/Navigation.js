@@ -1,16 +1,43 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Searchbar } from './Search';
-import { BoxFill, PillFill } from './Clicks';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from './Clicks';
 
 
 // Navigation bar, use this on hompage
-export class Navbar extends Component {
+export class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            menu: false
+            menu: false,
+            opacity: 1,
+        }
+    }
+
+    componentDidMount() {
+        this.scrollHandler(window.location.pathname);
+        if (window.location.pathname === "/project") { window.location.pathname = "/projects"; }
+    }
+
+    scrollHandler(data, event) {
+        console.info("add", window.scrollY)
+
+        if (data === "/" || window.location.href.includes("project/")) {
+            if (window.innerHeight < window.scrollY) { this.setState({ opacity: 1 }); }
+            else { this.setState({ opacity: 0 }); }
+
+            window.addEventListener("scroll", this.updateHeight.bind(this));
+        }
+
+        else {
+            console.info("this is an else", data)
+            this.setState({ opacity: 1 });
+        }
+    }
+
+    updateHeight(data) {
+        if ((window.location.pathname === "/" || window.location.href.includes("project/")) && window.scrollY < window.innerHeight - 100) {
+            this.setState({ opacity: 1 - (window.innerHeight - window.scrollY - 200) / (300) });
         }
     }
 
@@ -21,19 +48,21 @@ export class Navbar extends Component {
     render() {
         return (
             <>
-                <nav>
+                <nav style={{ opacity: this.state.opacity }} {...this.props}>
                     <div className="top">
                         <div className="left">
-                            <Link to="#" aria-label="Menu" onClick={this.toggleMenu.bind(this)}><i className="style3 fas fa-bars"></i></Link>
-                            <Link className="style3" to="/">byjackli</Link>
-                            <Searchbar />
+                            <button className="dragoff" aria-label="Menu" onClick={this.toggleMenu.bind(this)}>{
+                                this.state.menu
+                                    ? <i className="style3 fas fa-times"></i>
+                                    : <i className="style3 fas fa-bars"></i>
+                            }</button>
+                            <a className="style3 dragoff" onClick={this.scrollHandler.bind(this, "/")} href="/">byjackli</a>
+
                         </div>
                         <div>
-                            <NavLink className="navlink" to="/resume"><div className="button-box-nofill">Resume</div></NavLink>
-                            <NavLink className="navlink" to="/about"><div className="button-box-nofill">About</div></NavLink>
-                            <NavLink className="navlink" to="/project"><div className="button-box-nofill">Projects</div></NavLink>
-                            <NavLink className="navlink" to="/signin"><div className="button-box-nofill">Sign In</div></NavLink>
-                            <PillFill label="Create Account" href="/signup" type="fill" />
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/resume")} href="/resume"><div className="button-box-nofill">Resume</div></a>
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/about")} href="/about"><div className="button-box-nofill">About</div></a>
+                            <a className="navlink dragoff" onClick={this.scrollHandler.bind(this, "/projects")} href="/projects"><div className="button-box-nofill">Projects</div></a>
                         </div>
                     </div>
                     <div className="bottom">
@@ -80,36 +109,29 @@ export function Menubar(props) {
     }
 
     return (
-        <div className="menubar vrtTL">
+        <div aria-haspopup="menu" role="menu" className="menubar vrtTL">
             <div className="top">
-                <BoxFill label="close menu" type="fill" onClick={props.toggleMenu} />
                 <div className="categories">
                     <p>Greetings and Good {greetings()}!</p>
-                    <ol>
+                    <ol role="group" aria-label="pages">
                         <li>Jack</li>
-                        <li><BoxFill href="/resume" label="Resume" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/about" label="About" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/about" label="Contact" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/resume" label="Resume" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/about" label="About" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/projects" label="Projects" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/about" label="Contact" type="nofill" className="type4" /></li>
                     </ol>
-                    <ol>
+                    <ol role="group" aria-label="projects">
                         <li>Projects</li>
-                        <li><BoxFill href="/project" label="See All" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/photos" label="Photos" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/focus" label="Focus" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
-                        <li><BoxFill href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
-                    </ol>
-                    <ol>
-                        <li>Account</li>
-                        <li><BoxFill label="Profile" type="nofill" className="type4 invalid" /></li>
-                        <li><BoxFill label="Language" type="nofill" className="type4 invalid" /></li>
-                        <li><BoxFill label="Country" type="nofill" className="type4 invalid" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/projects" label="See All" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/lyrics" label="Lyrics" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/pages" label="Pages" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/topix" label="Topix" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/travel" label="Travel" type="nofill" className="type4" /></li>
+                        <li><Button role="menuitem" shape="box" color="nofill" href="/project/playlist" label="Playlist" type="nofill" className="type4" /></li>
                     </ol>
                 </div>
             </div>
             <div className="bottom">
-                <BoxFill href="#" label="sign out" type="fill" />
             </div>
         </div>
     );
@@ -122,7 +144,7 @@ export function Footer(props) {
         <footer className="hrzTL">
             <div className="left">
                 <Link className="style3" to="/">byjackli</Link>
-                <p>if you can't make sacrifices, then you need a new goal</p>
+                <p>DARE TO IMAGINE.</p>
             </div>
             <div className="hrzTL">
 
@@ -141,10 +163,10 @@ export function Footer(props) {
                 </ol>
                 <ol>
                     <li className="style5">Other projects</li>
-                    <li><a href="/project/travel">Travel - help travelers make decisions</a></li>
-                    <li><a href="/project/photos">Photos - immersive instagram experience</a></li>
-                    <li><a href="/project/focus">Focus - chrome extensions to improve focus</a></li>
                     <li><a href="/project/lyrics">Lyrics - music and lyrics side-by-side</a></li>
+                    <li><a href="/project/pages">Pages - simple website builder</a></li>
+                    <li><a href="/project/focus">Topix - academic sharing platform</a></li>
+                    <li><a href="/project/travel">Travel - help travelers make decisions</a></li>
                     <li><a href="/project/playlists">Playlists - share your spotify playlists</a></li>
                 </ol>
             </div>
