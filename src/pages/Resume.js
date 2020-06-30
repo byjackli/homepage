@@ -305,7 +305,7 @@ class Resume extends Component {
                                     <li><em><Intext href="https://www.ubspectrum.com/" label="The Spectrum" /></em></li>
                                     <li>- Advised new Multimedia Senior Editor</li>
                                     <li>- Photographed and edited images for the newspaper</li>
-                                    <li>- Conducted an&nbsp;<Intext href="https://catalog.buffalo.edu/courses/?abbr=ENG&num=394" label="accredited course" />&nbsp;on-behalf of Spectrum</li>
+                                    <li>- Conducted an accredited course on-behalf of Spectrum</li>
                                     <li>- Recruited and supervised staff photographers</li>
                                 </ol>
                                 <ol>
