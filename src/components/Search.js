@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxFill } from '../components/Clicks';
+import { Button } from '../components/Clicks';
 
 
 export function Searchbar() {
@@ -7,19 +7,19 @@ export function Searchbar() {
     //     // displays search suggestions
     // }
 
-    return <input className="fa-search" type="search" placeholder="&#xF002; Search byjackli" aria-label="Search byjackli" />;
+    return <input className="invalid fa-search" type="search" placeholder="&#xF002; Search byjackli" aria-label="Search byjackli" />;
 }
 
 export function Suggestbox() {
     return (
         <div className="suggestBox">
             <ol>
-                <li><BoxFill href="#" label="See All" type="fill" className="type4" /></li>
-                <li><BoxFill href="#" label="Travel" type="fill" className="type4" /></li>
-                <li><BoxFill href="#" label="Photos" type="fill" className="type4" /></li>
-                <li><BoxFill href="#" label="Focus" type="fill" className="type4" /></li>
-                <li><BoxFill href="#" label="Lyrics" type="fill" className="type4" /></li>
-                <li><BoxFill href="#" label="Playlist" type="fill" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="See All" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="Travel" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="Photos" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="Focus" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="Lyrics" className="type4" /></li>
+                <li><Button shape="box" color="fill" href="#" label="Playlist" className="type4" /></li>
             </ol>
         </div>
     );

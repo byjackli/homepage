@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, CompactNavbar, Menubar, Footer } from '../components/Navigation';
 import { Searchbar, Suggestbox } from '../components/Search';
 import { Card, Slot } from '../components/Nodes';
-import { BoxFill, PillFill, Intext } from '../components/Clicks';
+import { Button, Intext } from '../components/Clicks';
 
 
 class Styleguide extends Component {
@@ -21,35 +21,7 @@ class Styleguide extends Component {
                     <h2>Navigation</h2>
                     <Navbar message={<p><span className="style5">Test:</span> This is a test message!</p>} />
                     <CompactNavbar color="#B42637" />
-                    <Menubar
-                        height={75}
-                        categories={
-                            <div className="categories">
-                                <p>Good Morning Tony Stark!</p>
-                                <ol>
-                                    <li>Jack</li>
-                                    <li><BoxFill href="#" label="Resume" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="About" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Contact" type="nofill" className="type4" /></li>
-                                </ol>
-                                <ol>
-                                    <li>Projects</li>
-                                    <li><BoxFill href="#" label="See All" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Travel" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Photos" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Focus" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Lyrics" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Playlist" type="nofill" className="type4" /></li>
-                                </ol>
-                                <ol>
-                                    <li>Account</li>
-                                    <li><BoxFill href="#" label="Profile" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Language" type="nofill" className="type4" /></li>
-                                    <li><BoxFill href="#" label="Country" type="nofill" className="type4" /></li>
-                                </ol>
-                            </div>
-                        }
-                    />
+                    <Menubar />
                     <Searchbar />
                     <Suggestbox />
                     <Footer right={[
@@ -145,10 +117,10 @@ class Styleguide extends Component {
                 </section>
                 <section className="buttons-and-links">
                     <h2>Buttons and Links</h2>
-                    <BoxFill href="/styleguide" label="box fill" type="fill" />
-                    <BoxFill href="/styleguide" label="box nofill" type="nofill" />
-                    <PillFill href="/styleguide" label="pill fill" type="fill" />
-                    <PillFill href="/styleguide" label="pill nofill" type="nofill" />
+                    <Button href="/styleguide" label="box fill" shape="box" color="fill" />
+                    <Button href="/styleguide" label="box nofill" shape="box" color="nofill" />
+                    <Button href="/styleguide" label="pill fill" shape="pill" color="fill" />
+                    <Button href="/styleguide" label="pill nofill" shape="pill" color="nofill" />
                     <Intext href="/styleguide" label="in-text and internal" />
                     <Intext href="https://www.instagram.com/byjackli" label="external" />
                     <Intext href="https://www.instagram.com/byjackli" label="new tab" target="_blank" />

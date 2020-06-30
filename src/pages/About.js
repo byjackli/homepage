@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../config/firebase';
-import { Card, Slot } from '../components/Nodes';
+import { Card } from '../components/Nodes';
 import { Intext } from '../components/Clicks';
 
 class About extends Component {
@@ -8,49 +7,30 @@ class About extends Component {
     render() {
         return (
             <main className="about vrtTL">
-                <div className="pageheader">
-                    <h1>About</h1>
-                </div>
-                <div className="hrzTL">
-                    <div className="left">
-                        <h2 className="style3">Table of Contents</h2>
-                        <ol>
-                            <li>1. <Intext href="#early-life" label="Early Life" /></li>
-                            <li>2. <Intext href="#career" label="Career" /></li>
-                            <li>3. <Intext href="#personal-life" label="Personal Life" /></li>
-                            <li>4. <Intext href="#influences" label="Influences" /></li>
-                        </ol>
+                <section>
+                    <div className="pageheader">
+                        <h1>About Jack</h1>
                     </div>
-                    <div className="middle">
-                        <section>
-                            <p>
-                                Jack Li is a Computer Science and Communications student at <Intext href="http://engineering.buffalo.edu/" label="University at Buffalo's School of Engineering and Applied Sciences" />,
-                                media marketing director at <Intext href="https://www.sa.buffalo.edu/" label="University at Buffalo Student Association" />, and founder at <Intext href="https://www.ubphotoclub.org/" label="UB Photo Club" />.
-                                He began web developing in New York City during the early-2010's, and attained transformative knowledge during the late-2010's at University at Buffalo. He
-                                is know for his creative eye for photography and front-end web development. He is sometimes regarded as the "wizard" of photography and web development.
-                            </p>
-                        </section>
-                        <section>
-                            <h2>Early Life</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Career</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Personal Life</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
-                        <section>
-                            <h2>Influences</h2>
-                            <p>[ -redacted- ]</p>
-                        </section>
+                    <div className="hrzBT">
+                        <Card className="card" header="Core" elements={
+                            <div>
+
+                                <p>Truth be told, sometimes Jack needs to pick one and only one project and see it through.</p>
+                                <p>His strong passion for creating combined with his explosive imagination keeps him on his toes; moving from one project to the next.</p>
+                                <p>To make things worse, Jack is easily inspired by his environment - ranging from YouTube videos, to the way leaves fall from trees, to the organized chaotic rupture of glass.</p>
+                                <p>
+                                    Some say all this organized mess is the result of starting things at the wrong time.
+                                    If what they say is true, then it is with relief that Jack logs all of his past, current, and future goals and plans.
+                                    When the right time and place aligns, those projects will breathe new and refreshing life - probably the biggest glow-up you'll see.
+                                </p>
+                            </div>
+                        }
+                            style={{ width: "100%" }} />
                     </div>
-                    <div className="right">
+                    <div className="cards-3 hrzBT">
                         <Card className="card" header="Contact" elements={
                             <div>
-                                <div className="vrtTL">
+                                <div className="hrzTL">
                                     <ol>
                                         <li><i className="fas fa-phone"></i> (347) 476 - 4944</li>
                                         <li><i className="fas fa-envelope"></i> jackli@buffalo.edu</li>
@@ -67,7 +47,7 @@ class About extends Component {
                         <Card className="card" header="Social Media" elements={
                             <div>
                                 <p>Feel free to reach out and connect with me, socially!</p>
-                                <div className="vrtTL">
+                                <div className="hrzTL">
                                     <ol>
                                         <li><i className="fab fa-instagram"></i> <Intext href="https://www.instagram.com/byjackli/" label="Instagram" /></li>
                                         <li><i className="fab fa-pinterest"></i> <Intext href="https://www.pinterest.com/byjackli/" label="Pinterest" /></li>
@@ -84,9 +64,9 @@ class About extends Component {
                         } />
                         <Card className="card" header="Location" elements={
                             <div>
-                                <div className="vrtTL">
+                                <div className="hrzTL">
                                     <ol>
-                                        <li><i className="fas fa-map-marker-alt"></i> Currently home. New York, NY</li>
+                                        <li><i className="fas fa-map-marker-alt"></i> Quarantined Home</li>
                                         <li><i className="fas fa-home"></i> New York, NY</li>
                                         <li><i className="fas fa-graduation-cap"></i> Buffalo, NY</li>
                                     </ol>
@@ -94,8 +74,7 @@ class About extends Component {
                             </div>
                         } />
                     </div>
-                </div>
-
+                </section>
             </main>
         );
     }

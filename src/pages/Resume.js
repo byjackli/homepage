@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../config/firebase';
 import { Card, Slot } from '../components/Nodes';
 import { Intext } from '../components/Clicks';
+import Logo from '../images/logo.png';
+import Wideboy from '../images/wideboy.jpg';
 
 class Resume extends Component {
     constructor(props) {
@@ -9,26 +11,52 @@ class Resume extends Component {
         this.state = {
             courses: null,
             user_courses: null,
+            agendas: null,
+            projects: null,
+            resume: true
         }
     }
     componentDidMount() {
+        this.getData();
+    };
 
+    getData() {
         const db = firebase.firestore();
-
+        // get courses
         db.collection('courses').get().then(snapshotCourses => {
             let allCourses = new Map();
             snapshotCourses.docs.forEach(doc => {
                 allCourses.set(doc.id, doc.data());
             })
 
-            db.collection('users-courses').orderBy('year', 'desc').orderBy('term').orderBy('course').get().then(snapshotUserCourses => {
-                this.setState({
-                    user_courses: snapshotUserCourses.docs,
-                    courses: allCourses
+            // get agendas
+            db.collection('agendas').orderBy('date').orderBy('name').orderBy('status').get().then(snapshotAgendas => {
+
+                // get user courses
+                db.collection('users-courses').orderBy('year', 'desc').orderBy('term').orderBy('course').get().then(snapshotUserCourses => {
+
+                    // get projects
+                    db.collection('projects').orderBy('start-date', 'desc').orderBy('name').orderBy('status').get().then(snapshotProjects => {
+                        this.setState({
+                            agendas: snapshotAgendas.docs,
+                            user_courses: snapshotUserCourses.docs,
+                            projects: snapshotProjects.docs,
+                            courses: allCourses
+                        });
+                    });
                 });
             });
         });
-    };
+    }
+
+    renderDate(data) {
+        let
+            date = new Date(data * 1000),
+            months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
+
+        console.log("the date", data);
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
 
     renderCards(cards, cb) {
         return (
@@ -47,56 +75,15 @@ class Resume extends Component {
         return (
             <>{
                 slots.map(doc => (
-                    <Slot
-                        key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
-                        href={this.state.courses.get(doc.data().course).link}
-                        header={`${doc.data().course} ${this.state.courses.get(doc.data().course).name}`}
-                        line1={doc.data().term}
-                        line2={doc.data().year}
-                        tags={doc.data().tags}
-                    />
+                    cb(doc)
                 ))
             }</>
         )
     }
-    // renderSlots(slots, cb) {
-    //     let arr = [];
-    //     slots.forEach(doc => {
-    //         let
-    //             data = doc.data(),
-    //             course = data.course,
-    //             actual = this.state.courses.get(course);
-    //         console.info(course);
-    //         console.info(actual.link);
-    //         arr.push(
-    //             <Slot
-    //                 key={`${data.course}${data.term}${data.year}`}
-    //                 // href={this.state.courses.get(course).link}
-    //                 // header={this.state.courses.get(course).name}
-    //                 line1={data.term}
-    //                 line2={data.year}
-    //                 tags={data.tags}
-    //             />
-    //         )
-    //     })
-    //     return (
-    //         <>{
-    //             arr
-    //         }</>
-    //     )
-    // }
-
-    render() {
+    renderResume() {
         return (
-            <main className="resume">
-                {/* {this.state.cards ? this.renderCards() :
-                    <div>
-                        <h2>loading ...</h2>
-                        <p>This may take a while depending on your device and network connection.</p>
-                    </div>
-                } */}
-
-                <div className="hrzBT">
+            <section className="resume">
+                <div className="cards-3 hrzBT">
                     <Card className="card" header="Contact" elements={
                         <div>
                             <div className="hrzTL">
@@ -135,7 +122,7 @@ class Resume extends Component {
                         <div>
                             <div className="hrzTL">
                                 <ol>
-                                    <li><i className="fas fa-map-marker-alt"></i> Currently home. New York, NY</li>
+                                    <li><i className="fas fa-map-marker-alt"></i> Quarantined Home</li>
                                     <li><i className="fas fa-home"></i> New York, NY</li>
                                     <li><i className="fas fa-graduation-cap"></i> Buffalo, NY</li>
                                 </ol>
@@ -147,11 +134,10 @@ class Resume extends Component {
                 <div className="hrzBT">
                     <Card className="card" header="Expertises" elements={
                         <div>
-                            <p>Imposter Syndrome is a psychological pattern in which one doubts one's accomplishments and has a persistent internalized fear of being exposed as a "fraud".</p>
-                            <p><Intext href="https://paulineroseclance.com/pdf/-Langford.pdf" label="[source]" /></p>
-                            <div className="hrzTL">
+                            <p>Imposter Syndrome is a psychological pattern in which one doubts one's accomplishments and has a persistent internalized fear of being exposed as a "fraud". <Intext href="https://paulineroseclance.com/pdf/-Langford.pdf" label="[source]" /></p>
+                            <div className="hrzTL bucketlist">
                                 <ol>
-                                    <h4>Programming</h4>
+                                    <li><h4>Programming</h4></li>
                                     <li>- programming languages</li>
                                     <li>- interpreting documentation</li>
                                     <li>- web security</li>
@@ -162,7 +148,7 @@ class Resume extends Component {
                                     <li>- googling and researching</li>
                                 </ol>
                                 <ol>
-                                    <h4>Camera</h4>
+                                    <li><h4>Camera</h4></li>
                                     <li>- io interfaces</li>
                                     <li>- photography and videography</li>
                                     <li>- photo manipulations</li>
@@ -170,14 +156,14 @@ class Resume extends Component {
                                     <li>- video editing and animating</li>
                                 </ol>
                                 <ol>
-                                    <h4>Design</h4>
+                                    <li><h4>Design</h4></li>
                                     <li>- web design and wireframing</li>
                                     <li>- print and digital work</li>
                                     <li>- brand development</li>
                                     <li>- interpreting styleguides</li>
                                 </ol>
                                 <ol>
-                                    <h4>Communication</h4>
+                                    <li><h4>Communication</h4></li>
                                     <li>- proficient English</li>
                                     <li>- conversational Mandarin</li>
                                     <li>- conversational ChaoZhou</li>
@@ -186,12 +172,13 @@ class Resume extends Component {
                                     <li>- cloud and file sharing</li>
                                 </ol>
                                 <ol>
-                                    <h4>Bucket list</h4>
-                                    <li>- auto mechanic</li>
-                                    <li>- pianist</li>
-                                    <li>- 3d modeller</li>
-                                    <li>- track racer</li>
-                                    <li>- chef</li>
+                                    <li><h4>Bucket list</h4></li>
+                                    <li>- understand cars</li>
+                                    <li>- play piano</li>
+                                    <li>- 3d modelling</li>
+                                    <li>- track racing</li>
+                                    <li>- cooking</li>
+                                    <li>- fishing/hunting</li>
                                 </ol>
                             </div>
                         </div>
@@ -200,44 +187,164 @@ class Resume extends Component {
                     />
                 </div>
 
-                <div className="hrzBT">
-                    <Card className="card" header="All Current Agendas" elements={
+                <div className="cards-3 hrzBT">
+                    <Card className="card" header="Agendas" elements={
                         <div>
                             <p>On-going projects, tasks, and more.</p>
                             <p>Updated every Sunday morning, 5am EDT.</p>
-                            <div className="card-vrt">
-                                <Slot line1="May" line2="17" header="byjackli personal project" tags={["motivation", "exploration", "purpose"]} image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/70515020_421309365191643_6585258917258799635_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Zolkr2asqEEAX-A_w3N&oh=26584734bf49b0404bc4115dd3a9d89e&oe=5EF10579" />
-                                <Slot line1="June" line2="6" header="lyrics.byjackli project" tags={["motivation", "exploration", "purpose"]} image="https://www.scdn.co/i/_global/open-graph-default.png" />
-                                <Slot line1="June" line2="6" header="Internet Security Course" tags={["motivation", "exploration", "purpose"]} href="https://www.udemy.com/course/du-internet-security/" image="https://img-a.udemycdn.com/course/240x135/2506082_01cc_3.jpg" />
-                                <Slot line1="June" line2="20" header="photos.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/60487159_410125876380768_2939073432189000809_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=100&_nc_ohc=hqTFIMTXtFQAX_Ss3Ra&oh=feb37d45b02de0f3570377beccc09ec7&oe=5EFB39FD" />
-                                <Slot line1="June" line2="22" header="Blender 3D Modelling Course" tags={["motivation", "exploration", "purpose"]} href="https://www.youtube.com/playlist?list=PLjEaoINr3zgEq0u2MzVgAaHEBt--xLB6U" image="https://i.ytimg.com/vi/TPrnSACiTJ4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBqaXGYiz5GZIERze_tlHPfuEW-4A" />
-                                <Slot line1="June" line2="27" header="playlists.byjackli project" image="https://i.scdn.co/image/ab67706c0000da846cef7879d0c41b96614fb96b" />
-                                <Slot line1="July" line2="4" header="travel.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/75580624_427744227893450_3281423545455613562_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=102&_nc_ohc=PjXSADk7eQ4AX83_4iL&oh=0ce8456211365588cc581aab423e6ff5&oe=5EFC228E" />
-                                <Slot line1="July" line2="26" header="focus.byjackli project" image="https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/47255082_261545637871712_6298646750211080192_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=108&_nc_ohc=Re9L1VgBS-wAX-FC5tw&oh=c0cdaf3bb9ae06c162648f430124e3c5&oe=5EF9485E" />
+                            <Slot content={[
+                                <p className="style5">Date</p>,
+                                <p className="style5">Agenda</p>,
+                                <p className="style5">Status</p>
+                            ]} />
+                            <div role="list" className="card-vrt">
+
+                                {this.state.agendas ? this.renderSlots(this.state.agendas, (doc) => {
+                                    return (
+                                        <Slot
+                                            role="listitem"
+                                            key={`${doc.data().name}${doc.data().date.toString()}`}
+                                            href={doc.data().href}
+                                            content={[
+                                                <p>{this.renderDate(doc.data().date.seconds)}</p>,
+                                                <p>{doc.data().name}</p>,
+                                                <p>{doc.data().status}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading agenda ...</p>}
                             </div>
                         </div>
                     } />
                     <Card className="card" header="Education" elements={
                         <div>
-                            <p>University at Buffalo - Expected May 2021.</p>
+                            <p>University at Buffalo - Expected Feb 1, 2021.</p>
                             <p>Computer Science Major, Communications Minor</p>
-                            <div className="card-vrt">
-                                {this.state.user_courses ? this.renderSlots(this.state.user_courses) : <p>loading courses ...</p>}
+                            <Slot content={[
+                                <p className="style5">Term</p>,
+                                <p className="style5">Course</p>,
+                                <p className="style5">Status</p>
+                            ]} />
+                            <div role="list" className="card-vrt">
+                                {this.state.user_courses ? this.renderSlots(this.state.user_courses, (doc) => {
+                                    return (
+                                        <Slot
+                                            role="listitem"
+                                            key={`${doc.data().course}${doc.data().term}${doc.data().year}`}
+                                            href={this.state.courses.get(doc.data().course).link}
+                                            content={[
+                                                <p>{doc.data().year} {doc.data().term}</p>,
+                                                <p>{doc.data().course} {this.state.courses.get(doc.data().course).name}</p>,
+                                                <p>{doc.data().status}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading courses ...</p>}
                             </div>
                         </div>
                     } />
                     <Card className="card" header="Projects" elements={
                         <div>
-                            <p>Only past computer science projects and academic assignments listed in this section.</p>
-                            <div className="card-vrt">
-                                <Slot href="http://webdev.cse.buffalo.edu/cse410/gr8/app/#/login" line1="Spring" line2="2020" header="TOPIX: Collaborative Learning" />
-                                <Slot href="https://www.ubphotoclub.org" line1="June" line2="2018" header="UB Photo Club"  />
-                                <Slot href="https://github.com/jackli1337/project-delta" line1="November" line2="2018" header="UB Hackathon" />
-                                <Slot href="https://www.hsdlas.org" line1="June" line2="2014" header="High School for Dual Language and Asian Studies" />
+                            <p>All computer science projects and academic assignments.</p>
+                            <p>More academic assignments to be added.</p>
+                            <Slot content={[
+                                <p className="style5">Date</p>,
+                                <p className="style5">Project</p>,
+                                <p className="style5">Status</p>
+                            ]} />
+                            <div role="list" className="card-vrt">
+                                {this.state.projects ? this.renderSlots(this.state.projects, (doc) => {
+                                    console.info(doc.data())
+                                    return (
+                                        <Slot
+                                            role="listitem"
+                                            key={`${doc.data().name}${doc.data()["start-date"].toString()}`}
+                                            href={`/project/${doc.data().name}`}
+                                            content={[
+                                                <p>{this.renderDate(doc.data()["start-date"].seconds)}</p>,
+                                                <p>{doc.data().name}</p>,
+                                                <p>{doc.data().status.code}</p>
+                                            ]}
+                                        />
+                                    )
+                                }) : <p>loading projects ...</p>}
                             </div>
                         </div>
                     } />
                 </div>
+
+                <div className="hrzBT">
+                    <Card className="card" header="Experience" elements={
+                        <div>
+                            <div className="hrzTL xplist">
+                                <ol>
+                                    <li><h4>Director of Media and Marketing&nbsp;</h4> Aug 2019 - May 2020</li>
+                                    <li><em><Intext href="https://www.sa.buffalo.edu/" label="Undergraduate Student Association - University at Buffalo" /></em></li>
+                                    <li>- Oversaw 4 teams (Graphics, Photo, Video, Outreach), a total of over 16 active members</li>
+                                    <li>- Quality check all anything the public sees with an official Student Association logo</li>
+                                    <li>- Attend weekly director meetings, coordinate with other directors</li>
+                                    <li>- Interacted with over 150 clubs and 21,000 undergraduate students</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Co-Founder, Secretary, President, Senior Advisor&nbsp;</h4> Sep 2017 - May 2020</li>
+                                    <li><em><Intext href="https://www.ubphotoclub.org/" label="UB Photo Club" /></em></li>
+                                    <li>- Oversaw club brand management (ie brand identity, logo, graphics, templates)</li>
+                                    <li>- Modernized web presence (ie coded website, added LinkedIn page)</li>
+                                    <li>- Oversaw training and organization (ie trained recruits, shared personal resources)</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
+                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
+                                    <li>- Represented Amazon Prime Students and HBO</li>
+                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
+                                    <li>- Created interactive social media engagements</li>
+                                    <li>- Assisted students with registration process</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Staff Photographer, Multimedia Editor, Senior Advisor&nbsp;</h4> Aug 2017 - Dec 2018</li>
+                                    <li><em><Intext href="https://www.ubspectrum.com/" label="The Spectrum" /></em></li>
+                                    <li>- Advised new Multimedia Senior Editor</li>
+                                    <li>- Photographed and edited images for the newspaper</li>
+                                    <li>- Conducted an&nbsp;<Intext href="https://catalog.buffalo.edu/courses/?abbr=ENG&num=394" label="accredited course" />&nbsp;on-behalf of Spectrum</li>
+                                    <li>- Recruited and supervised staff photographers</li>
+                                </ol>
+                                <ol>
+                                    <li><h4>Video Production Intern&nbsp;</h4> Jul 2016 - Aug 2016</li>
+                                    <li><em><Intext href="https://lawline.com/" label="Lawline" /></em></li>
+                                    <li>- Shadowed accreditation, marketing, and developer teams</li>
+                                    <li>- Worked closely with front and back-end video production</li>
+                                    <li>- Conducted research and web analysis on improving product</li>
+                                    <li>- Completed and presented large project</li>
+                                </ol>
+                                <ol></ol>
+                            </div>
+                        </div>
+                    }
+                        style={{ width: "100%" }}
+                    />
+                </div>
+            </section>
+        )
+    }
+
+    render() {
+        console.log("address", window.location.pathname);
+        return (
+            <main className="resume">
+                {window.location.pathname === "/" ?
+                    <>
+                        <section className="pagecover vrtCC splash">
+                            <div className="pagecover-bg header vrtCC" style={{ backgroundImage: `radial-gradient(ellipse, var(--LightS) 10%, transparent 50%), url(${Wideboy})` }}></div>
+                            <div className="logo-container vrtCC fade-in dragoff">
+                                <img className="logo-homepage dragoff" src={Logo} alt="by jack li logo, letter J and L" />
+                                <p className="style4 dragoff">DARE TO IMAGINE.</p>
+                            </div>
+                            <p className="more fade-in expand dragoff">›››</p>
+                        </section>
+                        {this.state.resume ? this.renderResume() : null}
+                    </> :
+                    this.renderResume()
+                }
             </main>
         );
     };
