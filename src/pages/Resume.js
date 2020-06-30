@@ -173,11 +173,12 @@ class Resume extends Component {
                                 </ol>
                                 <ol>
                                     <li><h4>Bucket list</h4></li>
-                                    <li>- auto mechanic</li>
-                                    <li>- pianist</li>
-                                    <li>- 3d modeller</li>
-                                    <li>- track racer</li>
-                                    <li>- chef</li>
+                                    <li>- understand cars</li>
+                                    <li>- play piano</li>
+                                    <li>- 3d modelling</li>
+                                    <li>- track racing</li>
+                                    <li>- cooking</li>
+                                    <li>- fishing/hunting</li>
                                 </ol>
                             </div>
                         </div>
@@ -280,7 +281,7 @@ class Resume extends Component {
                                     <li><h4>Director of Media and Marketing&nbsp;</h4> Aug 2019 - May 2020</li>
                                     <li><em><Intext href="https://www.sa.buffalo.edu/" label="Undergraduate Student Association - University at Buffalo" /></em></li>
                                     <li>- Oversaw 4 teams (Graphics, Photo, Video, Outreach), a total of over 16 active members</li>
-                                    <li>- Quality check all anything the public sees with an official Student Association logo (ie merchandise, media)</li>
+                                    <li>- Quality check all anything the public sees with an official Student Association logo</li>
                                     <li>- Attend weekly director meetings, coordinate with other directors</li>
                                     <li>- Interacted with over 150 clubs and 21,000 undergraduate students</li>
                                 </ol>
@@ -300,20 +301,20 @@ class Resume extends Component {
                                     <li>- Assisted students with registration process</li>
                                 </ol>
                                 <ol>
-                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
-                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
-                                    <li>- Represented Amazon Prime Students and HBO</li>
-                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
-                                    <li>- Created interactive social media engagements</li>
-                                    <li>- Assisted students with registration process</li>
+                                    <li><h4>Staff Photographer, Multimedia Editor, Senior Advisor&nbsp;</h4> Aug 2017 - Dec 2018</li>
+                                    <li><em><Intext href="https://www.ubspectrum.com/" label="The Spectrum" /></em></li>
+                                    <li>- Advised new Multimedia Senior Editor</li>
+                                    <li>- Photographed and edited images for the newspaper</li>
+                                    <li>- Conducted an&nbsp;<Intext href="https://catalog.buffalo.edu/courses/?abbr=ENG&num=394" label="accredited course" />&nbsp;on-behalf of Spectrum</li>
+                                    <li>- Recruited and supervised staff photographers</li>
                                 </ol>
                                 <ol>
-                                    <li><h4>Campus Manager, Brand Ambassador&nbsp;</h4> Aug 2018 - May 2020</li>
-                                    <li><em><Intext href="https://riddleandbloom.com/" label="Riddle and Bloom" /></em></li>
-                                    <li>- Represented Amazon Prime Students and HBO</li>
-                                    <li>- Hosted events and conducted peer-to-peer conversations</li>
-                                    <li>- Created interactive social media engagements</li>
-                                    <li>- Assisted students with registration process</li>
+                                    <li><h4>Video Production Intern&nbsp;</h4> Jul 2016 - Aug 2016</li>
+                                    <li><em><Intext href="https://lawline.com/" label="Lawline" /></em></li>
+                                    <li>- Shadowed accreditation, marketing, and developer teams</li>
+                                    <li>- Worked closely with front and back-end video production</li>
+                                    <li>- Conducted research and web analysis on improving product</li>
+                                    <li>- Completed and presented large project</li>
                                 </ol>
                                 <ol></ol>
                             </div>

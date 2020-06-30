@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Clicks';
-import Logo from '../images/logo.png';
 
 
 // Navigation bar, use this on hompage

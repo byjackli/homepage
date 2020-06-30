@@ -1,13 +1,13 @@
 import React from 'react';
-import { Tag } from '../components/Clicks';
+// import { Tag } from '../components/Clicks';
 
 
 // Card element, use when neccessary
 export function Card({ header, elements, slots, ...rest }) {
-    function editCard(header, elements, slots) {
-    }
-    function saveCard(header, elements, slots) {
-    }
+    // function editCard(header, elements, slots) {
+    // }
+    // function saveCard(header, elements, slots) {
+    // }
 
     return (
         <div className="card" {...rest}>
@@ -28,13 +28,13 @@ export function Card({ header, elements, slots, ...rest }) {
 
 
 // Slot element, use when neccessary
-export function Slot(props) {
+export function Slot({ href, content, ...rest }) {
 
     return (
-        <div className="slot">
-            {props.href ? <a href={props.href} >{props.href}</a> : null}
+        <div className="slot" {...rest}>
+            {href ? <a href={href} >{href}</a> : null}
             <div className="slot-content hrzBT">
-                {props.content ? props.content : null}
+                {content ? content : null}
             </div>
         </div>
     );

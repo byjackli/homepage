@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../config/firebase';
-import { Card, Slot } from '../components/Nodes';
-import { Intext } from '../components/Clicks';
 import Logo from '../images/logo.png';
-import Wideboy from '../images/wideboy.jpg';
 
 class Error extends Component {
     constructor(props) {
@@ -19,10 +15,13 @@ class Error extends Component {
         return (
             <main className="error">
                 <section className="vrtCC">
-                    <div>
-
+                    <div className="vrtTL">
                         <h1 className="style-mega">Error</h1>
                         <p className="style3">Page not Found! <span style={{ fontSize: "inherit" }}>Maybe there was a typo?</span></p>
+                        <hr></hr>
+                        <div className="logo-container dragoff">
+                            <p className="style4 dragoff hrzCC"><img className="logo-homepage dragoff" src={Logo} alt="by jack li logo, letter J and L" style={{ width: "2em" }} /> DARE TO IMAGINE.</p>
+                        </div>
                     </div>
                 </section>
             </main>
